@@ -1,10 +1,16 @@
 package com.dbproject.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Users {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String userName;
     private Integer rating;
     private String password;
@@ -13,11 +19,14 @@ public class Users {
     private Location location; //many user can have one location
     private String email;
 
+    @OneToMany
+    @JoinColumn(name = "userID")
+    private Set<Vehicle> vehicles = new HashSet<>();
 
     protected Users() {
         //needed for JPA
     }
-
+    //rating can be null, user start with no cars
     public Users(String userName, String password, Location location, String email) {
         this.userName = userName;
         this.password = password;
@@ -25,12 +34,11 @@ public class Users {
         this.email = email;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -72,5 +80,13 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 }
