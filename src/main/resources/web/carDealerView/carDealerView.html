@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<!-- From the LinkedIn Learning course "jQuery Essential Training" -->
+
+<head>
+    <title>Car Dealership</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript">
+        $("document").ready(function () {
+            // $("p").css("border", "3px solid red");
+            // $(".selectors").css("border", "3px solid red");
+            // $("#intro").css("border", "3px solid red");
+            // $("p:first").css("border", "3px solid red");
+            // $("h2:not(.selectors)").css("border", "3px solid red");
+        });
+    </script>
+</head>
+<header>
+    <ul class="horizontal">
+        <li>
+
+            <div class="searchBtnWrapper menuBtn">
+                <label>
+                    <input class="searchInput" id="searchInput" type="text" placeholder="Search">
+                </label>
+                <div>
+                    <button type="button" id="searchCar" class="searchBtn">Search</button>
+                </div>
+            </div>
+        </li>
+        <li style="float:right">
+            <div class="loginBtn menuBtn" id="loginBtn">
+                Login
+            </div>
+            <div class="accountBtn menuBtn" id="accountBtn">
+                Account
+            </div>
+        </li>
+    </ul>
+</header>
+
+<body>
+
+    <div class="pageWrapper">
+        <div class="frontPageHeader"></div>
+        <div class="sModal modal-login" id="login-modal" style="display: none;">
+            <div class="modalStart">
+                <div class="loginmodal-container">
+                    <button class="closeX">x</button>
+                    <h1>Login to Your Account</h1><br>
+                    <form>
+                        <input type="text" name="user" placeholder="Username">
+                        <input type="password" name="pass" placeholder="Password">
+                        <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                    </form>
+
+                    <div class="login-help">
+                        <a class="registerBtn" href="#">Register</a> - <a href="#">Forgot Password</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sModal modal-account" id="account-modal" style="display: none;">
+            <div class="modalStart">
+                <div class="accountModal-container">
+                    <button class="closeX-account">x</button>
+                    <h5 class="accountHeader">Your Account</h5>
+                    <div class="accountInfo-wrapper">
+                        <div class="account-wrapper">
+                            <div class="smallHeader">User name:</div>
+                            <div class="userName" id="user-name">Barracuda</div>
+                        </div>
+                        <div class="account-wrapper">
+                            <div class="smallHeader">Location:</div>
+                            <div class="location" id="user-location">Valby</div>
+                        </div>
+                        <div class="password-wrapper">
+                            <div class="changePassword">Change your password</div>
+                            <input type="password" name="pass" placeholder="********">
+                        </div>
+                        <div>
+                            <button class="addCar">Add Car</button>
+                        </div>
+                        <div style="text-align: right;">
+                            <a href="#" class="view-cars">View Cars</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="registerWrapper">
+            <form class="form-horizontal" action='' method="POST">
+                <fieldset>
+                  <div id="legend">
+                    <legend class="registerHeader">Register</legend>
+                  </div>
+                  <div class="control-group">
+                    <!-- Username -->
+                    <label class="control-label"  for="username">Username</label>
+                    <div class="controls">
+                      <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+                      <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+                    </div>
+                  </div>
+               
+                  <div class="control-group">
+                    <!-- E-mail -->
+                    <label class="control-label" for="email">E-mail</label>
+                    <div class="controls">
+                      <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                      <p class="help-block">Please provide your E-mail</p>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <!-- Location -->
+                    <label class="control-label" for="locationUser">City Name</label>
+                    <div class="controls">
+                      <input type="text" id="locationUser" name="locationUser" placeholder="" class="input-xlarge">
+                      <p class="help-block">Please write your city</p>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <!-- Password-->
+                    <label class="control-label" for="password">Password</label>
+                    <div class="controls">
+                      <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                      <p class="help-block">Password should be at least 4 characters</p>
+                    </div>
+                  </div>
+               
+                  <div class="control-group">
+                    <!-- Password -->
+                    <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+                    <div class="controls">
+                      <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+                      <p class="help-block">Please confirm password</p>
+                    </div>
+                  </div>
+               
+                  <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                      <button class="btn btn-success">Register</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+        </div>
+        <div class="searchWrapper">
+            <div class="row listing">
+                <div class="col-xs-4">
+
+
+                    <div style="position: relative; overflow: hidden;">
+                        <img style="z-index: 1;"
+                            src="https://media-download.ecgh.dk/images/bTwAAOSwvL1fahSe/S157X111/picture.jpg"
+                            data-echo="https://media-download.ecgh.dk/images/bTwAAOSwvL1fahSe/S157X111/picture.jpg"
+                            alt="Citroën C3 1,2 PT 82 Feel+ 5d" class="img-thumbnail listing-thumbs-lg">
+
+                    </div>
+
+                </div>
+                <div class="col-xs-4">
+
+                    <div class="row">
+                        <a class="listing-heading darkLink">Citroën
+                            C3
+                            1,2
+                            PT 82 Feel+ 5d</a>
+                    </div>
+                    <div class="row">
+                        <div class="listing-description expandable-box" style="height: 34px;">
+                            Fuldaut. Airdoncdition, Fjernb. C.Lock, cruise control, Drivingcomputer, Infocenter,
+                            Startspærre,
+                            Temp. Meter,
+                            Rain sensor, Seat heating, Height adjustment. Driver's seat, 4X Power windows, Power
+                            mirrors,
+                            Automatic Start / Stop,
+                            Tire Pressure Gauge, Multifunction Steering Wheel, Handsfree For Mobile, Bluetooth,
+                            Music
+                            Streaming
+                            Via Bluetooth, Apple
+                            Carplay, Usb connection, Aux connection, Isofix, Cup holder, Fabric upholstery, Split
+                            rear
+                            seat,
+                            Fog
+                            lights,
+                            Automatic Light, LED Daytime Running Light, 6 Airbags, Abs, Esp, Non Smoking, Service Ok
+                            <div class="revealLink clearfix"
+                                style="background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 30%);">
+                                <div class="linkText" style="background-color: rgb(255, 255, 255);">...More info
+                                </div>
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="row">
+                        <div class="col-xs-2 listing-data "></div>
+                        <div class="col-xs-2 listing-data " id="kmsDone">55.000</div>
+                        <div class="col-xs-2 listing-data " id="year">2017</div>
+                        <div class="col-xs-3 listing-price " id="price">99.900 kr.</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 listing-region" id="location">Valby</div>
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-2">
+                        </div>
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-3">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+            <div class="row listing">
+                <div class="col-xs-4">
+
+
+                    <div style="position: relative; overflow: hidden;">
+                        <img style="z-index: 1;"
+                            src="https://media-download.ecgh.dk/images/VoYAAOSwF5Ne2Nw9/S157X111/picture.jpg"
+                            data-echo="https://media-download.ecgh.dk/images/VoYAAOSwF5Ne2Nw9/S157X111/picture.jpg"
+                            alt="Ferrari 812 Superfast 6,5 DCT 2d" class="img-thumbnail listing-thumbs-lg">
+
+                    </div>
+
+                </div>
+                <div class="col-xs-4">
+
+                    <div class="row">
+                        <a class="listing-heading darkLink">Ferrari
+                            812
+                            Superfast 6,5 DCT 2d</a>
+                    </div>
+                    <div class="row">
+                        <div class="listing-description expandable-box" style="height: 34px;">
+                            * Private Flexleasing:
+                            * Insurance IS INCLUDED IN MONTHLY BENEFIT.
+                            * Monthly Lease Payment Kr. 37.995, -
+                            * Maturity: 6 Months Registered & 6 Months Downtime
+                            * Initial benefit Kr. 515.851, -
+                            * Deposit Kr. 270.622, - (Refundable)
+                            * Residual value Kr. 1,610,763 (Excl. VAT)
+                            * Total Benefit Kr. 971.791-
+                            * All amounts are including VAT.
+                            * Price Excl. VAT U. Tax Kr. 2,013,454
+
+
+                            * Equipment:
+                            * Nero Daytona (Black) Metal Paint
+                            * Nero (Black) Leather Interior M. Rosso (Red)
+                            Alcantara Details
+                            * Full-Electric Seats M. Heat And Memory
+                            * Rosso Stitches
+                            * 20 "Grigio Corsa (Dark Gray) Matt Forged Wheels
+                            * Carbon Rear Bumper Sides
+                            * Titanium Wheel Bolts
+                            * Rosso Corsa (Red) Brake Calipers
+                            * Carbon Fiber Driver Zone (F1-Paddles, Steering Wheel, Dashboard)
+                            * Black Tachometer
+                            * Stone slag foil
+                            * "Scuderia Ferrari" Shields
+                            * Auto. Dazzling Rearview Mirror & Side Mirrors
+                            * Full LED Headlights + SBL
+                            * Parking sensor Front & Rear
+                            * Parking Camera Rear
+                            * Multifunction steering wheel
+                            * Electric Steering Column
+                            * Bluetooth
+                            * Cruise control
+                            * 2 Zone Air Conditioning
+                            * Electric Side Mirrors
+                            <div class="revealLink clearfix"
+                                style="background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 30%);">
+                                <div class="linkText" style="background-color: rgb(255, 255, 255);">...More info
+                                </div>
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="row">
+                        <div class="col-xs-2 listing-data "></div>
+                        <div class="col-xs-2 listing-data " id="kmsDone">2.000</div>
+                        <div class="col-xs-2 listing-data " id="year">2019</div>
+                        <div class="col-xs-3 listing-price " id="price">2.013.454 kr.</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 listing-region" id="location">Valby</div>
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-2">
+                        </div>
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-3 listing-labels">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
