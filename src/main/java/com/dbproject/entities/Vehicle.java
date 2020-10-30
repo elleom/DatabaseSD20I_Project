@@ -1,6 +1,7 @@
 package com.dbproject.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Vehicle {
@@ -125,5 +126,29 @@ public class Vehicle {
 
     public void setOrderID(int orderID) {
         this.orderID = orderID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return id == vehicle.id &&
+                year == vehicle.year &&
+                fuelType == vehicle.fuelType &&
+                kms == vehicle.kms &&
+                hp == vehicle.hp &&
+                Float.compare(vehicle.value, value) == 0 &&
+                available == vehicle.available &&
+                orderID == vehicle.orderID &&
+                Objects.equals(colour, vehicle.colour) &&
+                Objects.equals(location, vehicle.location) &&
+                Objects.equals(user, vehicle.user) &&
+                Objects.equals(model, vehicle.model);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, year, colour, fuelType, kms, hp, value, available, location, user, model, orderID);
     }
 }

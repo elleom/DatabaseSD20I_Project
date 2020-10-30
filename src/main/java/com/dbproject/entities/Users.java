@@ -2,6 +2,7 @@ package com.dbproject.entities;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -88,5 +89,24 @@ public class Users {
 
     public void setVehicles(Set<Vehicle> vehicles) {
         this.vehicles = vehicles;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users = (Users) o;
+        return id.equals(users.id) &&
+                userName.equals(users.userName) &&
+                Objects.equals(rating, users.rating) &&
+                password.equals(users.password) &&
+                location.equals(users.location) &&
+                email.equals(users.email) &&
+                Objects.equals(vehicles, users.vehicles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userName, rating, password, location, email, vehicles);
     }
 }

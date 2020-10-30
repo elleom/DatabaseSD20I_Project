@@ -2,6 +2,7 @@ package com.dbproject.entities;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -62,5 +63,22 @@ public class Location {
 
     public void setUsers(Set<Users> users) {
         this.users = users;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return postalCode == location.postalCode &&
+                id.equals(location.id) &&
+                name.equals(location.name) &&
+                Objects.equals(users, location.users) &&
+                Objects.equals(vehicles, location.vehicles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, postalCode, users, vehicles);
     }
 }
