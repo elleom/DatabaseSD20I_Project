@@ -10,6 +10,7 @@ public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    //TODO check autoincrement
     private Long id;
 
     private String userName;
