@@ -14,11 +14,18 @@ $(document).ready(function () {
     });
       $("#loginBtn").click(function () {
         $("#login-modal").show();
+ 
         $("#account-modal").hide();
+    });
+      $(".showCarInfo").click(function () {
+        $("#car-modal").show();
+        $("#account-modal").hide();
+        $("#login-modal").hide();
     });
     $(".closeX").on("click", function (e) {
         e.preventDefault();
         $("#login-modal").hide();
+        $(".sModal").hide();
     });
       $("#accountBtn").click(function () {
         $("#account-modal").show();
@@ -28,6 +35,10 @@ $(document).ready(function () {
         e.preventDefault();
         $("#account-modal").hide();
     });
+    $(".frontPageHeader").on("click", function () {
+        window.location.href = "carDealerView.html";
+    });
+
 });
 
 

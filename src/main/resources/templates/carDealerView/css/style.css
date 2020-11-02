@@ -10360,8 +10360,10 @@ div.bb-pagewrapper {
   margin-right: 19.5px;
 }
 /*Register Page Styling*/
+
 .registerWrapper {
-  display: none;
+  background: #696969;
+  padding: 30px 0;
 }
 .registerWrapper.registerActive {
   display: block;
@@ -10497,6 +10499,15 @@ button.btn.btn-success {
   position: absolute;
   left: 44%;
   margin-left: -50px;
+  top: 24%;
+  padding: 30px;
+  background-color: #F7F7F7;
+  margin: 0 auto;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  font-family: roboto;
+  font-size: 14px;
 }
 
 .accountModal-container {
@@ -10544,13 +10555,22 @@ button.closeX-account {
   position: absolute;
 }
 
-/*Custom styling */
-
+/*Custom styling 
 .row.listing {
   display: inline-block;
   width: calc(50% - 3px);
   margin-right: 15px;
 }
+*/
+.listing .listing-price {
+  text-align: left;
+  width: 100px;
+}
+.searchPrice {
+  position: absolute;
+  right: 20px;
+}
+
 ul.horizontal {
   list-style-type: none;
   margin: 0;
@@ -10570,6 +10590,21 @@ ul.horizontal li a {
 ul.horizontal li {
   float: left;
   cursor: pointer;
+}
+.btn.showCarInfo {
+  background: radial-gradient(blue 75%, red 75%);
+  color: white;
+}
+/*carModal styling*/
+.carInfoInline {
+  display: inline-block;
+}
+.car-wrapper .smallHeader {
+  display: inline-block;
+}
+.sModal.modal-cars {
+  left: 20%;
+  margin-right: 20%;
 }
 .searchWrapper {
   display: none;
@@ -10600,6 +10635,7 @@ ul.horizontal li {
   background-position: center;
   background-size: cover;
   height: 90.5vh;
+  padding-top: 20px;
 
 }
 .frontPageHeader {
@@ -10608,6 +10644,7 @@ ul.horizontal li {
   background-position: center;
   background-size: contain;
   height: 14vh;
+  cursor: pointer;
 }
 .pageWrapper.searchActive {
  background: white; 

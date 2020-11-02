@@ -1,0 +1,140 @@
+<head>
+  <title>Car Dealership</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+
+</head>
+<header>
+  <ul class="horizontal">
+    <li>
+
+      <div class="searchBtnWrapper menuBtn">
+        <label>
+          <input class="searchInput" id="searchInput" type="text" placeholder="Search">
+        </label>
+        <div>
+          <button type="button" id="searchCar" class="searchBtn">Search</button>
+        </div>
+      </div>
+    </li>
+    <li style="float:right">
+      <div class="loginBtn menuBtn" id="loginBtn">
+        Login
+      </div>
+      <div class="accountBtn menuBtn" id="accountBtn">
+        Account
+      </div>
+    </li>
+  </ul>
+</header>
+<div class="pageWrapper registerActive">
+  <div class="frontPageHeader" onclick="window.location.href='carDealerView.html'"></div>
+  <div class="registerWrapper">
+    <form class="form-horizontal" action='' method="POST">
+      <fieldset>
+        <div id="legend">
+          <legend class="registerHeader">Register</legend>
+        </div>
+        <div class="control-group">
+          <!-- Username -->
+          <label class="control-label" for="username">Username</label>
+          <div class="controls">
+            <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+            <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- E-mail -->
+          <label class="control-label" for="email">E-mail</label>
+          <div class="controls">
+            <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+            <p class="help-block">Please provide your E-mail</p>
+          </div>
+        </div>
+        <div class="control-group">
+          <!-- Location -->
+          <label class="control-label" for="locationUser">City Name</label>
+          <div class="controls">
+            <input type="text" id="locationUser" name="locationUser" placeholder="" class="input-xlarge">
+            <p class="help-block">Please write your city</p>
+          </div>
+        </div>
+        <div class="control-group">
+          <!-- Password-->
+          <label class="control-label" for="password">Password</label>
+          <div class="controls">
+            <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+            <p class="help-block">Password should be at least 4 characters</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Password -->
+          <label class="control-label" for="password_confirm">Password (Confirm)</label>
+          <div class="controls">
+            <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+            <p class="help-block">Please confirm password</p>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <!-- Button -->
+          <div class="controls">
+            <button class="btn btn-success">Register</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <div class="sModal modal-login" id="login-modal" style="display: none;">
+      <div class="modalStart">
+          <div class="loginmodal-container">
+              <button class="closeX">x</button>
+              <h1>Login to Your Account</h1><br>
+              <form>
+                  <input type="text" name="user" placeholder="Username">
+                  <input type="password" name="pass" placeholder="Password">
+                  <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+              </form>
+  
+              <div class="login-help">
+                  <a class="registerBtn" href="registerPage.html">Register</a> - <a href="#">Forgot Password</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="sModal modal-account" id="account-modal" style="display: none;">
+      <div class="modalStart">
+          <div class="accountModal-container">
+              <button class="closeX-account">x</button>
+              <h5 class="accountHeader">Your Account</h5>
+              <div class="accountInfo-wrapper">
+                  <div class="account-wrapper">
+                      <div class="smallHeader">User name:</div>
+                      <div class="userName" id="user-name">Barracuda</div>
+                  </div>
+                  <div class="account-wrapper">
+                      <div class="smallHeader">Location:</div>
+                      <div class="location" id="user-location">Valby</div>
+                  </div>
+                  <div class="password-wrapper">
+                      <div class="changePassword">Change your password</div>
+                      <input type="password" name="pass" placeholder="********">
+                  </div>
+                  <div>
+                      <button class="addCar">Add Car</button>
+                  </div>
+                  <div style="text-align: right;">
+                      <a href="#" class="view-cars">View Cars</a>
+                  </div>
+  
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+
+</div>
