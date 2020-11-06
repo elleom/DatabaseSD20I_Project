@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- From the LinkedIn Learning course "jQuery Essential Training" -->
 
 <head>
     <title>Car Dealership</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
 
 </head>
 <header>
@@ -95,42 +95,17 @@
                         <div class="car-wrapper">
                             <div class="smallHeader">Car Information</div>
                             <div class="carParagraph" id="car-info">
-                                * Private Flexleasing:
-                                * Insurance IS INCLUDED IN MONTHLY BENEFIT.
-                                * Monthly Lease Payment Kr. 37.995, -
-                                * Maturity: 6 Months Registered & 6 Months Downtime
-                                * Initial benefit Kr. 515.851, -
-                                * Deposit Kr. 270.622, - (Refundable)
-                                * Residual value Kr. 1,610,763 (Excl. VAT)
-                                * Total Benefit Kr. 971.791-
-                                * All amounts are including VAT.
-                                * Price Excl. VAT U. Tax Kr. 2,013,454
+
+                                <!-- TODO check this shit out -->
+                                <!-- <ul th:each="user : ${users}"></ul>
+                                <li th:text="${users.ID}">data.name</li> -->
+
+                                <ul th:each="vehicle : ${vehicles}">
+                                    <li th:text="${vehicle.id}">DATA</li>
+                                    <li th:text="${vehicle.location.name}">DATA</li>
+                                </ul>
 
 
-                                * Equipment:
-                                * Nero Daytona (Black) Metal Paint
-                                * Nero (Black) Leather Interior M. Rosso (Red)
-                                Alcantara Details
-                                * Full-Electric Seats M. Heat And Memory
-                                * Rosso Stitches
-                                * 20 "Grigio Corsa (Dark Gray) Matt Forged Wheels
-                                * Carbon Rear Bumper Sides
-                                * Titanium Wheel Bolts
-                                * Rosso Corsa (Red) Brake Calipers
-                                * Carbon Fiber Driver Zone (F1-Paddles, Steering Wheel, Dashboard)
-                                * Black Tachometer
-                                * Stone slag foil
-                                * "Scuderia Ferrari" Shields
-                                * Auto. Dazzling Rearview Mirror & Side Mirrors
-                                * Full LED Headlights + SBL
-                                * Parking sensor Front & Rear
-                                * Parking Camera Rear
-                                * Multifunction steering wheel
-                                * Electric Steering Column
-                                * Bluetooth
-                                * Cruise control
-                                * 2 Zone Air Conditioning
-                                * Electric Side Mirrors
                             </div>
                         </div>
                         <div class="car-wrapper">

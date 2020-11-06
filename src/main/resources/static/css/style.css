@@ -10630,7 +10630,7 @@ ul.horizontal li {
   font-size: 16px;
 }
 .pageWrapper {
-  background-image: url("s-l1600.jpg");
+  background-image: url("../images/s-l1600.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -10639,7 +10639,7 @@ ul.horizontal li {
 
 }
 .frontPageHeader {
-  background-image: url("yourDeal.png");
+  background-image: url("../images/yourDeal.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

@@ -8,14 +8,14 @@ public class Vehicle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private int year;
+    private Long id;
+    private Long year;
     private String colour;
-    private char fuelType;
-    private int kms;
-    private int hp;
-    private float value;
-    private int available;
+    private String fuelType;
+    private Long kms;
+    private Long hp;
+    private Float value;
+    private Integer available;
 
     @ManyToOne
     private Location location;
@@ -27,24 +27,25 @@ public class Vehicle {
     private Model model;
 
     //TODO check if this should be a fk, if so can it be null??
-    private int orderID;
+
+    private Long orderID;
 
     public Vehicle() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getYear() {
+    public Long getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Long year) {
         this.year = year;
     }
 
@@ -56,43 +57,43 @@ public class Vehicle {
         this.colour = colour;
     }
 
-    public char getFuelType() {
+    public String getFuelType() {
         return fuelType;
     }
 
-    public void setFuelType(char fuelType) {
+    public void setFuelType(String fuelType) {
         this.fuelType = fuelType;
     }
 
-    public int getKms() {
+    public Long getKms() {
         return kms;
     }
 
-    public void setKms(int kms) {
+    public void setKms(Long kms) {
         this.kms = kms;
     }
 
-    public int getHp() {
+    public Long getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public void setHp(Long hp) {
         this.hp = hp;
     }
 
-    public float getValue() {
+    public Float getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(Float value) {
         this.value = value;
     }
 
-    public int getAvailable() {
+    public Integer getAvailable() {
         return available;
     }
 
-    public void setAvailable(int available) {
+    public void setAvailable(Integer available) {
         this.available = available;
     }
 
@@ -120,11 +121,11 @@ public class Vehicle {
         this.model = model;
     }
 
-    public int getOrderID() {
+    public Long getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(int orderID) {
+    public void setOrderID(Long orderID) {
         this.orderID = orderID;
     }
 
