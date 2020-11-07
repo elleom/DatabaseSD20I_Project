@@ -17,18 +17,4 @@ public class CardealershipApplication {
 		SpringApplication.run(CardealershipApplication.class, args);
 	}
 
-	//@Bean
-	//public CommandLineRunner demo(UsersRepository repository){
-	//	return (args) -> {
-			//save a new user
-			//repository.save(new Users( "leomartins", "password", , "leo@email.com"));
-//
-	//	};
-
-		//TODO declare link tables
-		//TODO create controllers
-		//TODO create thimeleaf template folder
-//	}
-
-
 }
