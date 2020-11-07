@@ -15,12 +15,15 @@ public class Invoice {
     private Long amount;
 
     @OneToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "ID")
     private Order order;
 
     @OneToOne
+    @JoinColumn(name = "user_ID", referencedColumnName = "id")
     private Users user;
 
     @OneToOne
+    @JoinColumn(name = "payment_type_ID", referencedColumnName = "ID")
     private PaymentType paymentType;
 
     public Long getID() {

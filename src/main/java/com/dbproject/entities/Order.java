@@ -5,6 +5,7 @@ import java.util.Date;
 
 
 @Entity
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -33,6 +34,54 @@ public class Order {
 
     public Order() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Long getValue() {
+        return value;
+    }
+
+    public void setValue(Long value) {
+        this.value = value;
+    }
+
+    public Users getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(Users buyer) {
+        this.buyer = buyer;
+    }
+
+    public Users getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Users seller) {
+        this.seller = seller;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     //TODO create lombok annotation

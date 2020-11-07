@@ -950,7 +950,7 @@ SELECT|sys.sys_config:null
       <Engine>InnoDB</Engine>
     </table>
     <view id="298" parent="2" name="carsavailable">
-      <SourceTextLength>499</SourceTextLength>
+      <SourceTextLength>346</SourceTextLength>
       <Definer>root@localhost</Definer>
     </view>
     <view id="299" parent="2" name="carslisted">
@@ -1012,12 +1012,12 @@ SELECT|sys.sys_config:null
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="311" parent="288" name="ordersID">
+    <column id="311" parent="288" name="order_id">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="312" parent="288" name="users_ID">
+    <column id="312" parent="288" name="user_id">
       <Position>5</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
@@ -1033,11 +1033,11 @@ SELECT|sys.sys_config:null
       <Type>btree</Type>
     </index>
     <index id="315" parent="288" name="generates">
-      <ColNames>ordersID</ColNames>
+      <ColNames>order_id</ColNames>
       <Type>btree</Type>
     </index>
     <index id="316" parent="288" name="fk_invoice_users1_idx">
-      <ColNames>users_ID</ColNames>
+      <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
     <index id="317" parent="288" name="fk_invoice_payment_type1_idx">
@@ -1047,8 +1047,8 @@ SELECT|sys.sys_config:null
     <key id="318" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID
-ordersID
-users_ID
+order_id
+user_id
 payment_type_ID</ColNames>
       <Primary>1</Primary>
     </key>
@@ -1057,12 +1057,12 @@ payment_type_ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
     <foreign-key id="320" parent="288" name="generates">
-      <ColNames>ordersID</ColNames>
+      <ColNames>order_id</ColNames>
       <RefTableName>orders</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <foreign-key id="321" parent="288" name="fk_invoice_users1">
-      <ColNames>users_ID</ColNames>
+      <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
@@ -1083,7 +1083,7 @@ payment_type_ID</ColNames>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="325" parent="289" name="postalCode">
+    <column id="325" parent="289" name="postal_code">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
@@ -1099,7 +1099,7 @@ payment_type_ID</ColNames>
       <Type>btree</Type>
     </index>
     <index id="328" parent="289" name="postalCode">
-      <ColNames>postalCode</ColNames>
+      <ColNames>postal_code</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
@@ -1113,7 +1113,7 @@ payment_type_ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
     <key id="331" parent="289" name="postalCode">
-      <ColNames>postalCode</ColNames>
+      <ColNames>postal_code</ColNames>
       <UnderlyingIndexName>postalCode</UnderlyingIndexName>
     </key>
     <column id="332" parent="290" name="ID">
@@ -1171,7 +1171,7 @@ payment_type_ID</ColNames>
       <DataType>varchar(125)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="343" parent="291" name="makeID">
+    <column id="343" parent="291" name="make_id">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
@@ -1186,13 +1186,13 @@ payment_type_ID</ColNames>
       <Type>btree</Type>
     </index>
     <index id="346" parent="291" name="build">
-      <ColNames>makeID</ColNames>
+      <ColNames>make_id</ColNames>
       <Type>btree</Type>
     </index>
     <key id="347" parent="291" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID
-makeID</ColNames>
+make_id</ColNames>
       <Primary>1</Primary>
     </key>
     <key id="348" parent="291" name="ID_UNIQUE">
@@ -1200,7 +1200,7 @@ makeID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
     <foreign-key id="349" parent="291" name="build">
-      <ColNames>makeID</ColNames>
+      <ColNames>make_id</ColNames>
       <RefTableName>make</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
@@ -1438,7 +1438,7 @@ usersID2</ColNames>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="398" parent="297" name="fuelType">
+    <column id="398" parent="297" name="fuel_type">
       <Position>4</Position>
       <DataType>varchar(1)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1463,12 +1463,12 @@ usersID2</ColNames>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="403" parent="297" name="locationID">
+    <column id="403" parent="297" name="location_id">
       <Position>9</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="404" parent="297" name="userID">
+    <column id="404" parent="297" name="user_id">
       <Position>10</Position>
       <DataType>int|0s</DataType>
     </column>
@@ -1487,11 +1487,11 @@ usersID2</ColNames>
       <Type>btree</Type>
     </index>
     <index id="408" parent="297" name="fk_vehicle_location1_idx">
-      <ColNames>locationID</ColNames>
+      <ColNames>location_id</ColNames>
       <Type>btree</Type>
     </index>
     <index id="409" parent="297" name="fk_vehicle_users1_idx">
-      <ColNames>userID</ColNames>
+      <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
     <index id="410" parent="297" name="fk_vehicle_model1_idx">
@@ -1513,12 +1513,12 @@ model_ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
     <foreign-key id="414" parent="297" name="fk_vehicle_location1">
-      <ColNames>locationID</ColNames>
+      <ColNames>location_id</ColNames>
       <RefTableName>location</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <foreign-key id="415" parent="297" name="fk_vehicle_users1">
-      <ColNames>userID</ColNames>
+      <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
@@ -1527,125 +1527,5 @@ model_ID</ColNames>
       <RefTableName>model</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="417" parent="298" name="Build Year">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="418" parent="298" name="Kms">
-      <Position>2</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="419" parent="298" name="DKK">
-      <Position>3</Position>
-      <DataType>float|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="420" parent="298" name="available">
-      <Position>4</Position>
-      <DataType>tinyint(1)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="421" parent="298" name="colour">
-      <Position>5</Position>
-      <DataType>varchar(15)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="422" parent="298" name="Make">
-      <Position>6</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="423" parent="298" name="Model">
-      <Position>7</Position>
-      <DataType>varchar(125)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="424" parent="298" name="Seller">
-      <Position>8</Position>
-      <DataType>varchar(45)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="425" parent="299" name="Build Year">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="426" parent="299" name="Kms">
-      <Position>2</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="427" parent="299" name="DKK">
-      <Position>3</Position>
-      <DataType>float|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="428" parent="299" name="available">
-      <Position>4</Position>
-      <DataType>tinyint(1)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="429" parent="299" name="colour">
-      <Position>5</Position>
-      <DataType>varchar(15)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="430" parent="299" name="Make">
-      <Position>6</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="431" parent="299" name="Model">
-      <Position>7</Position>
-      <DataType>varchar(125)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="432" parent="299" name="Seller">
-      <Position>8</Position>
-      <DataType>varchar(45)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="433" parent="300" name="Build Year">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="434" parent="300" name="Kms">
-      <Position>2</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="435" parent="300" name="DKK">
-      <Position>3</Position>
-      <DataType>float|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="436" parent="300" name="available">
-      <Position>4</Position>
-      <DataType>tinyint(1)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="437" parent="300" name="colour">
-      <Position>5</Position>
-      <DataType>varchar(15)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="438" parent="300" name="Make">
-      <Position>6</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="439" parent="300" name="Model">
-      <Position>7</Position>
-      <DataType>varchar(125)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="440" parent="300" name="Seller">
-      <Position>8</Position>
-      <DataType>varchar(45)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
   </database-model>
 </dataSource>
