@@ -1,17 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <title>Car Dealership</title>
-  <link rel="stylesheet" href="../../static/css/style.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../../static/js/jquery-3.5.1.js"></script>
-  <script type="text/javascript" src="../../static/js/scripts.js"></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+  <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
+  <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
 
 </head>
 <header>
   <ul class="horizontal">
     <li style="float:right">
       <div class="loginBtn menuBtn" id="loginBtn">
-        <a href="login.html">Login</a>
+        <a href="/login">Login</a>
       </div>
     </li>
   </ul>
