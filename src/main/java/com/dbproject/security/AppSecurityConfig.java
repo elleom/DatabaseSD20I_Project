@@ -32,19 +32,15 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/register").permitAll()
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/Login").permitAll()
                 .anyRequest()
                 .authenticated()
-                //form login
                 .and()
-                .csrf().disable()
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .and()
-                //logout
                 .logout().invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
