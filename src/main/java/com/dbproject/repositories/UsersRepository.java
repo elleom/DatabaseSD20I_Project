@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UsersRepository extends CrudRepository<Users, Long> {
 
-    List<Users> findByUserName(String userName); //defines a list of Users with the same name
+    Users findByUserName(String userName); //defines a list of Users with the same name
 
 
 

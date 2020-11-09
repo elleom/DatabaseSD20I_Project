@@ -24,4 +24,21 @@ public class IndexController {
 
         return "carDealerView/carDealerView";
     }
+
+    @RequestMapping({"/register", })
+    public String getReg(Model model){
+        model.addAttribute("vehicles" , vehiclesRepository.findAll());
+
+        return "carDealerView/carDealerView";
+    }
+
+    @RequestMapping("/login")
+    public String loginPage(){
+        return "public/login";
+    }
+
+    @RequestMapping("/logout")
+    public String logoutPage(){
+        return "public/logout";
+    }
 }

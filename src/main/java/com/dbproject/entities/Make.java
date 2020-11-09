@@ -16,7 +16,7 @@ public class Make {
     private String name;
 
     @OneToMany
-    @JoinColumn(name = "makeID")
+    @JoinColumn(name = "make_ID")
     private Set<Model> models = new HashSet<>();
 
     public Make() {

@@ -19,7 +19,7 @@ public class Location {
     private Set<Users> users = new HashSet();
 
     @OneToMany
-    @JoinColumn(name= "locationID")
+    @JoinColumn(name= "location_ID")
     private Set<Vehicle> vehicles = new HashSet<>();
 
     public Location() {

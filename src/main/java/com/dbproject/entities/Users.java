@@ -21,7 +21,7 @@ public class Users {
     private String email;
 
     @OneToMany
-    @JoinColumn(name = "userID")
+    @JoinColumn(name = "user_id")
     private Set<Vehicle> vehicles = new HashSet<>();
 
     protected Users() {
