@@ -21,8 +21,8 @@ public class UsersController {
         return "users/list";
     }
     @RequestMapping("/users/show/{id}")
-    public String showById(@PathVariable String id,Model model){
-        model.addAttribute("userId", usersRepository.findById(new Long(id)));
+    public String showById(@PathVariable Long id,Model model){
+        model.addAttribute("user", usersRepository.findById(id).orElse(null));
         return "users/show";
     }
 

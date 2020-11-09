@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Spring Framework Guru</title>
@@ -14,11 +14,12 @@
         <th>email</th>
         <th>location</th>
     </tr>
-    <!--<tr th:each="user : ${userId}">
-        <td th:text="${user}">DATA</td>
-        <td th:text="${user}"> DATA</td>
-        <td th:text="${user}"> DATA</td>
-        <td th:text="${user}">DATA</td>-->
+    <tr>
+        <!-- TODO CHANGE THIS SHIT, DOES NOT WORK -->
+        <td th:text="${user.id}">DATA</td>
+        <td th:text="${user.userName}"> DATA</td>
+        <td th:text="${user.location.name}"> DATA</td>
+        <td th:text="${user.location.id}">DATA</td>
     </tr>
 </table>
 </body>
