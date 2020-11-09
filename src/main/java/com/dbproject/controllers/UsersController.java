@@ -20,10 +20,10 @@ public class UsersController {
         model.addAttribute("users", usersRepository.findAll());
         return "users/list";
     }
-    @RequestMapping("/users/{id}")
-    public String getUserbyId(@PathVariable("id") Long id, Model model){
-        model.addAttribute("users", usersRepository.findById(id));
-        return "users/list";
+    @RequestMapping("/users/show/{id}")
+    public String showById(@PathVariable String id,Model model){
+        model.addAttribute("userId", usersRepository.findById(new Long(id)));
+        return "users/show";
     }
 
 }
