@@ -37,7 +37,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `car_dealership`.`payment_type` (
   `ID` INT NOT NULL,
-  `pType` VARCHAR(4) NULL DEFAULT NULL,
+  `type` VARCHAR(4) NULL DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE)
 ENGINE = InnoDB
@@ -139,19 +139,19 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`vehicle` (
   `available` TINYINT(1) NOT NULL,
   `location_id` INT NOT NULL,
   `user_id` INT NULL DEFAULT NULL,
-  `model_id` INT NOT NULL,
-  `orderid` INT NULL DEFAULT NULL,
-  PRIMARY KEY (`ID`, `model_id`),
+  `model_ID` INT NOT NULL,
+  `orderID` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`, `model_ID`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE,
   INDEX `fk_vehicle_location1_idx` (`location_id` ASC) VISIBLE,
   INDEX `fk_vehicle_users1_idx` (`user_id` ASC) VISIBLE,
-  INDEX `fk_vehicle_model1_idx` (`model_id` ASC) VISIBLE,
-  INDEX `fk_vehicle_orders1_idx` (`orderid` ASC) VISIBLE,
+  INDEX `fk_vehicle_model1_idx` (`model_ID` ASC) VISIBLE,
+  INDEX `fk_vehicle_orders1_idx` (`orderID` ASC) VISIBLE,
   CONSTRAINT `fk_vehicle_location1`
     FOREIGN KEY (`location_id`)
     REFERENCES `car_dealership`.`location` (`ID`),
   CONSTRAINT `fk_vehicle_model1`
-    FOREIGN KEY (`model_id`)
+    FOREIGN KEY (`model_ID`)
     REFERENCES `car_dealership`.`model` (`ID`),
   CONSTRAINT `fk_vehicle_users1`
     FOREIGN KEY (`user_id`)
@@ -169,19 +169,19 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`orders` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `date` DATE NOT NULL,
   `value` INT NOT NULL,
-  `buyerName` INT NOT NULL,
-  `sellerName` INT NOT NULL,
+  `buyer_id` INT NOT NULL,
+  `seller_id` INT NOT NULL,
   `vehicle_ID` INT NOT NULL,
   PRIMARY KEY (`ID`, `vehicle_ID`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE,
-  INDEX `fk_orders_users1_idx` (`buyerName` ASC) VISIBLE,
-  INDEX `fk_orders_users2_idx` (`sellerName` ASC) VISIBLE,
+  INDEX `fk_orders_users1_idx` (`buyer_id` ASC) VISIBLE,
+  INDEX `fk_orders_users2_idx` (`seller_id` ASC) VISIBLE,
   INDEX `fk_orders_vehicle1_idx` (`vehicle_ID` ASC) VISIBLE,
   CONSTRAINT `fk_orders_users1`
-    FOREIGN KEY (`buyerName`)
+    FOREIGN KEY (`buyer_id`)
     REFERENCES `car_dealership`.`users` (`ID`),
   CONSTRAINT `fk_orders_users2`
-    FOREIGN KEY (`sellerName`)
+    FOREIGN KEY (`seller_id`)
     REFERENCES `car_dealership`.`users` (`ID`),
   CONSTRAINT `fk_orders_vehicle1`
     FOREIGN KEY (`vehicle_ID`)
@@ -199,25 +199,25 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`invoice` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `date` DATE NOT NULL,
   `amount` INT NOT NULL,
-  `ordersID` INT NOT NULL,
-  `users_ID` INT NOT NULL,
+  `order_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
   `payment_type_ID` INT NOT NULL,
-  PRIMARY KEY (`ID`, `ordersID`, `users_ID`, `payment_type_ID`),
+  PRIMARY KEY (`ID`, `order_id`, `user_id`, `payment_type_ID`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE,
-  INDEX `generates` (`ordersID` ASC) VISIBLE,
-  INDEX `fk_invoice_users1_idx` (`users_ID` ASC) VISIBLE,
+  INDEX `generates` (`order_id` ASC) VISIBLE,
+  INDEX `fk_invoice_users1_idx` (`user_id` ASC) VISIBLE,
   INDEX `fk_invoice_payment_type1_idx` (`payment_type_ID` ASC) VISIBLE,
   CONSTRAINT `fk_invoice_payment_type1`
     FOREIGN KEY (`payment_type_ID`)
     REFERENCES `car_dealership`.`payment_type` (`ID`),
   CONSTRAINT `fk_invoice_users1`
-    FOREIGN KEY (`users_ID`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `car_dealership`.`users` (`ID`),
   CONSTRAINT `generates`
-    FOREIGN KEY (`ordersID`)
+    FOREIGN KEY (`order_id`)
     REFERENCES `car_dealership`.`orders` (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -292,7 +292,7 @@ CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY D
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `car_dealership`.`carslisted`;
 USE `car_dealership`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `car_dealership`.`carslisted` AS select `car_dealership`.`vehicle`.`year` AS `Build Year`,`car_dealership`.`vehicle`.`Kms` AS `Kms`,`car_dealership`.`vehicle`.`value` AS `DKK`,`car_dealership`.`vehicle`.`available` AS `available`,`car_dealership`.`vehicle`.`colour` AS `colour`,`m2`.`name` AS `Make`,`m`.`name` AS `Model`,`u`.`user_name` AS `Seller` from ((((`car_dealership`.`vehicle` join `car_dealership`.`location` `l` on((`l`.`ID` = `car_dealership`.`vehicle`.`locationID`))) join `car_dealership`.`model` `m` on((`m`.`ID` = `car_dealership`.`vehicle`.`model_ID`))) join `car_dealership`.`users` `u` on((`car_dealership`.`u`.`ID` = `car_dealership`.`vehicle`.`user_id`))) join `car_dealership`.`make` `m2` on((`m2`.`ID` = `m`.`make_id`)));
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `car_dealership`.`carslisted` AS select `car_dealership`.`vehicle`.`year` AS `Build Year`,`car_dealership`.`vehicle`.`Kms` AS `Kms`,`car_dealership`.`vehicle`.`value` AS `DKK`,`car_dealership`.`vehicle`.`available` AS `available`,`car_dealership`.`vehicle`.`colour` AS `colour`,`m2`.`name` AS `Make`,`m`.`name` AS `Model`,`u`.`user_name` AS `Seller` from ((((`car_dealership`.`vehicle` join `car_dealership`.`location` `l` on((`l`.`ID` = `car_dealership`.`vehicle`.`location_id`))) join `car_dealership`.`model` `m` on((`m`.`ID` = `car_dealership`.`vehicle`.`model_ID`))) join `car_dealership`.`users` `u` on((`u`.`ID` = `car_dealership`.`vehicle`.`user_id`))) join `car_dealership`.`make` `m2` on((`m2`.`ID` = `m`.`make_id`)));
 
 -- -----------------------------------------------------
 -- View `car_dealership`.`carsnotavailable`
