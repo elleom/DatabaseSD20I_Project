@@ -25,7 +25,7 @@
         </li>
         <li style="float:right">
             <div class="loginBtn menuBtn" id="loginBtn">
-                Login
+                <a href="/logout" >Logout</a>
             </div>
             <div class="accountBtn menuBtn" id="accountBtn">
                 Account
@@ -174,13 +174,13 @@
                 </div>
                 <div class="col-xs-6">
                     <div class="row">
-                        <div class="col-xs-2 listing-data " id="kmsDone">55.000</div>
-                        <div class="col-xs-2 listing-region" id="location">Valby</div>
+                        <div class="col-xs-2 listing-data " id="kmsDone"><p th:text="${vehicle.kms}"> 55.000</p></div>
+                        <div class="col-xs-2 listing-region" id="location"><p th:text="${vehicle.location.name}">Valby</p></div>
                    
                     </div>
                     <div class="searchPrice">
 
-                        <div class="listing-price searchPrice" id="price">99.900 kr.</div>
+                        <div class="listing-price searchPrice" id="price"><p th:text="${vehicle.kms}">99.900 kr</p></div>
 
                     </div>
 
