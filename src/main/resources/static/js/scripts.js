@@ -18,7 +18,7 @@ $(document).ready(function () {
         $("#account-modal").hide();
     });
       $(".showCarInfo").click(function () {
-        $("#car-modal").show();
+        $(this).parent().parent().parent().siblings(".col-xs-6").children($("#car-modal")).show();
         $("#account-modal").hide();
         $("#login-modal").hide();
     });

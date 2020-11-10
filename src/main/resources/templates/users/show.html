@@ -2,25 +2,30 @@
 <html lang="en" xmlns:th="http:/www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
     <title>Spring Framework Guru</title>
 </head>
-<body>
-<h1>Users List</h1>
+<body style="background: #696969;">
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>name</th>
-        <th>email</th>
-        <th>location</th>
-    </tr>
-    <tr>
+
+<div class="userCard-wrapper">
+    <h1>User Card</h1>
+    <div style="text-align: center; margin-bottom:20px;">
+    <img class="placeholderImage" th:src="@{/images/dogCute.jpg}">
+    </div>  
+    <div class="userCard-headerWrapper">
+        <div class="userCard-header">ID</div>
+        <div class="userCard-header">name</div>
+        <div class="userCard-header">location</div>
+        <div class="userCard-header">email</div>
+    </div>
+    <div class="userCard-infoWrapper">
         <!-- TODO CHANGE THIS SHIT, DOES NOT WORK -->
-        <td th:text="${user.id}">DATA</td>
-        <td th:text="${user.userName}"> DATA</td>
-        <td th:text="${user.location.name}"> DATA</td>
-        <td th:text="${user.location.id}">DATA</td>
-    </tr>
-</table>
+        <div class="userCard-info" th:text="${user.id}">DATA</div>
+        <div class="userCard-info" th:text="${user.userName}"> DATA</div>
+        <div class="userCard-info" th:text="${user.location.name}">DATA</div>
+        <div class="userCard-info" th:text="${user.email}"> DATA</div>
+    </div>
+</div>
 </body>
 </html>

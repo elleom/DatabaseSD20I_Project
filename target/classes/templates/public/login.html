@@ -1,43 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="../../static/css/style.css">
+
     <title>Your Deal - P2P Cars!</title>
+
+    <style>
+        .login-wrapper {
+            background: #696969;
+            padding: 70px 0 100%;
+        }
+
+        .login-info {
+            color: white;
+        }
+
+        ul.horizontal {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: darkred;
+            height: 80px;
+        }
+
+        ul.horizontal li a {
+            display: inline-block;
+            color: white !important;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        ul.horizontal li {
+            float: left;
+            cursor: pointer;
+        }
+
+        .frontPageHeader {
+            font-size: 35px;
+            color: gold;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        button.btn.btn-success {
+            padding: 10px 0px;
+            width: 160px;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
-<body>
-<div id="login">
-    <h3 class="text-center text-white pt-5">Login form</h3>
-    <div class="container">
-        <div id="login-row" class="row justify-content-center align-items-center">
-            <div id="login-column" class="col-md-6">
-                <div id="login-box" class="col-md-12">
+<header>
+    <ul class="horizontal">
+        <div class="frontPageHeader" onclick="window.location.href='carDealerView.html'">Your Deal</div>
+
+    </ul>
+</header>
+
+<body style="height: 100%; overflow: hidden;">
+    <div class="login-wrapper" id="login">
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
 
 
-                    <!-- TODO check this out ${SPRING_SECURITY_LAST_EXCEPTION.message}-->
-                    <form id="login-form" class="form" action="" method="post">
-                        <h3 class="text-center text-info">Login</h3>
-                        <div class="form-group">
-                            <label for="username" class="text-info">Username:</label><br>
-                            <input type="text" name="username" id="username" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="text-info">Password:</label><br>
-                            <input type="text" name="password" id="password" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                        </div>
-                        <div id="register-link" class="text-right">
-                            <a href="/register" class="text-info">Register here</a>
-                        </div>
-                    </form>
+                        <!-- TODO check this out ${SPRING_SECURITY_LAST_EXCEPTION.message}-->
+                        <form id="login-form" class="form" action="" method="post">
+                            <h3 class="text-center login-info">Login</h3>
+                            <div class="form-group">
+                                <label for="username" class="login-info">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="login-info">Password:</label><br>
+                                <input type="text" name="password" id="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-success" value="submit">
+                            </div>
+                            <div id="register-link" class="text-right">
+                                <a href="/register" class="login-info">Register here</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>

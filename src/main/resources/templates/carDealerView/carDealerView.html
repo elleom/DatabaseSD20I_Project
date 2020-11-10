@@ -13,6 +13,7 @@
 </head>
 <header>
     <ul class="horizontal">
+        <div class="frontPageHeader"></div>
         <li>
             <div class="searchBtnWrapper menuBtn">
                 <label>
@@ -37,7 +38,7 @@
 <body>
 
     <div class="pageWrapper">
-        <div class="frontPageHeader"></div>
+        
         <div class="sModal modal-login" id="login-modal" style="display: none;">
             <div class="modalStart">
                 <div class="loginmodal-container">
@@ -84,62 +85,7 @@
                 </div>
             </div>
         </div>
-        <div class="sModal modal-cars" id="car-modal" style="display: none;">
-            <div class="modalStart">
-                <div class="carModal-container">
-                    <button class="closeX">x</button>
-                    <h2 class="carHeader">Ferrari 812 Superfast 6,5 DCT 2d</h2>
-                    <div class="carInfo-wrapper">
-                        <div class="car-wrapper">
-                            <div class="smallHeader">Car Information</div>
-                            <div class="carParagraph" id="car-info">
-
-                                <!-- TODO check this shit out -->
-                                <!-- <ul th:each="user : ${users}"></ul>
-                                <li th:text="${users.ID}">data.name</li> -->
-
-                                <ul>
-                                    <li >vehicle.model.name</li>
-                                    <li >vehicle.model.make.name</li>
-                                    <li >vehicle.location.name</li>
-                                    <li >vehicle.price or value</li>
-                                </ul>
-
-
-                            </div>
-                        </div>
-                        <div class="car-wrapper">
-                            <div class="smallHeader">Location:</div>
-                            <div class="carInfoInline car-location" id="car-location">Valby</div>
-                        </div>
-                        <div class="car-wrapper">
-                            <div class="smallHeader">Colour:</div>
-                            <div class="carInfoInline car-colour" id="car-colour">Black</div>
-                        </div>
-                        <div class="car-wrapper">
-                            <div class="smallHeader">Fuel:</div>
-                            <div class="carInfoInline car-colour" id="car-fuel">Benzin</div>
-                        </div>
-                        <div class="car-wrapper">
-                            <div class="smallHeader">Kilometers done:</div>
-                            <div class="carInfoInline car-kms" id="car-kms">2.000</div>
-                        </div>
-                        <div class="car-wrapper">
-                            <div class="smallHeader">Horsepower:</div>
-                            <div class="carInfoInline car-hp" id="car-kms">750Hp/800NM</div>
-                        </div>
-                        <div class="car-wrapper">
-                            <div class="smallHeader">Price:</div>
-                            <div class="carInfoInline car-price" id="car-price">2.013.454 kr.</div>
-                        </div>
-                        <div>
-                            <button class="buyCar">Buy Car</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
         <div class="searchWrapper">
             <div th:each="vehicle : ${vehicles}" class="row listing">
@@ -174,68 +120,76 @@
                 </div>
                 <div class="col-xs-6">
                     <div class="row">
-                        <div class="col-xs-2 listing-data " id="kmsDone"><p th:text="${vehicle.kms}"> 55.000</p></div>
-                        <div class="col-xs-2 listing-region" id="location"><p th:text="${vehicle.location.name}">Valby</p></div>
-                   
+                        <div class="col-xs-4 listing-heading"><p>Km's done</p></div>
+                        <div class="col-xs-2 listing-heading local"><p>Location</p></div>
+                        <div class="col-xs-2 listing-heading listing-price searchPrice" id="price"><p>Price</p></div>
                     </div>
-                    <div class="searchPrice">
-
-                        <div class="listing-price searchPrice" id="price"><p th:text="${vehicle.kms}">99.900 kr</p></div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-            <div class="row listing">
-                <div class="col-xs-2">
-
-
-                    <div style="position: relative; overflow: hidden;">
-                        <img style="z-index: 1;"
-                            src="https://media-download.ecgh.dk/images/VoYAAOSwF5Ne2Nw9/S157X111/picture.jpg"
-                            data-echo="https://media-download.ecgh.dk/images/VoYAAOSwF5Ne2Nw9/S157X111/picture.jpg"
-                            alt="Ferrari 812 Superfast 6,5 DCT 2d" class="img-thumbnail listing-thumbs-lg">
-
-                    </div>
-
-                </div>
-                <div class="col-xs-4">
-
                     <div class="row">
-                        <a class="listing-heading darkLink">Ferrari
-                            812
-                            Superfast 6,5 DCT 2d</a>
+                        <div class="col-xs-4 listing-data listing-text" id="kmsDone"><p th:text="${vehicle.kms}"> kmsDone</p><span class="krSpan">km</span></div>
+                        <div class="col-xs-2 listing-region listing-text" id="location"><p th:text="${vehicle.location.name}">Location</p></div>
+                        <div class="col-xs-2 listing-price searchPrice" id="price"><p th:text="${vehicle.value}">Price</p><span class="krSpan">kr.</span></div>
                     </div>
-
-
-                    <div class="revealLink clearfix"
-                        style="background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 30%);">
-                        <div class="btn linkText showCarInfo" style="background-color: rgb(255, 255, 255);">...More info
+                
+                    <div class="sModal modal-cars" id="car-modal" style="display: none;">
+                        <div class="modalStart">
+                            <div class="carModal-container">
+                                <button class="closeX">x</button>
+                                <p class="carHeader" th:text="${vehicle.kms}">Ferrari 812 Superfast 6,5 DCT 2d</p>
+                                <div class="carInfo-wrapper">
+                                    <div class="car-wrapper">
+                                        <div class="smallHeader">Car Information</div>
+                                        <div class="carParagraph" id="car-info">
+            
+                                            <!-- TODO check this shit out -->
+                                            <!-- <ul th:each="user : ${users}"></ul>
+                                            <li th:text="${users.ID}">data.name</li> -->
+            
+                                            <ul>
+                                                <li >vehicle.model.name</li>
+                                                <li >vehicle.model.make.name</li>
+                                                <li >vehicle.location.name</li>
+                                                <li >vehicle.price or value</li>
+                                            </ul>
+            
+            
+                                        </div>
+                                    </div>
+                                    <div class="car-wrapper">
+                                        <div class="smallHeader">Location:</div>
+                                        <div class="carInfoInline car-location" id="car-location">Valby</div>
+                                    </div>
+                                    <div class="car-wrapper">
+                                        <div class="smallHeader">Colour:</div>
+                                        <div class="carInfoInline car-colour" id="car-colour">Black</div>
+                                    </div>
+                                    <div class="car-wrapper">
+                                        <div class="smallHeader">Fuel:</div>
+                                        <div class="carInfoInline car-colour" id="car-fuel">Benzin</div>
+                                    </div>
+                                    <div class="car-wrapper">
+                                        <div class="smallHeader">Kilometers done:</div>
+                                        <div class="carInfoInline car-kms" id="car-kms">2.000</div>
+                                    </div>
+                                    <div class="car-wrapper">
+                                        <div class="smallHeader">Horsepower:</div>
+                                        <div class="carInfoInline car-hp" id="car-kms">750Hp/800NM</div>
+                                    </div>
+                                    <div class="car-wrapper">
+                                        <div class="smallHeader">Price:</div>
+                                        <div class="carInfoInline car-price" id="car-price">2.013.454 kr.</div>
+                                    </div>
+                                    <div>
+                                        <button class="buyCar">Buy Car</button>
+                                    </div>
+            
+                                </div>
+                            </div>
                         </div>
-                        <div class="arrow"></div>
                     </div>
-
-
                 </div>
-                <div class="col-xs-6">
-                    <div class="row">
-                        <div class="col-xs-2 listing-data " id="kmsDone">2.000</div>
-                        <div class="col-xs-2 listing-region" id="location">Valby</div>
-                   
-                    </div>
-                    <div class=" searchPrice">
-
-                        <div class="listing-price searchPrice" id="price">2.013.454 kr.</div>
-
-                    </div>
-
-                </div>
-               
+     
             </div>
+
         </div>
     </div>
 </body>

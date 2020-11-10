@@ -10496,12 +10496,11 @@ button.btn.btn-success {
 }
 .sModal {
   z-index: 3;
-  position: absolute;
-  left: 44%;
-  margin-left: -50px;
-  top: 24%;
-  padding: 30px;
-  background-color: #F7F7F7;
+  width: 560px;
+  position: relative;
+  top: 30px;
+  padding: 30px 20px 20px;
+  background-color: #f7f7f7;
   margin: 0 auto;
   border-radius: 2px;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
@@ -10603,8 +10602,11 @@ ul.horizontal li {
   display: inline-block;
 }
 .sModal.modal-cars {
-  left: 20%;
-  margin-right: 20%;
+  right: 40%;
+  position: absolute;
+  height: 630px;
+  width: 700px;
+  text-align: center;
 }
 .searchWrapper {
   display: none;
@@ -10643,8 +10645,12 @@ ul.horizontal li {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  height: 14vh;
+  height: 80px;
   cursor: pointer;
+  position: fixed;
+  top: 0;
+  width: 200px;
+  left: 48%;
 }
 .pageWrapper.searchActive {
  background: white; 
@@ -10672,7 +10678,7 @@ ul.horizontal li {
   position: relative;
 }
 .loginBtn {
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 footer {
   background-color: #696969;
@@ -10680,4 +10686,71 @@ footer {
   color: white;
   font-size: 16px;
   padding: 10px 0;
+}
+
+.col-xs-2.listing-heading.listing-price.searchPrice {
+  margin: 0;
+  
+}
+.col-xs-2.listing-heading {
+  margin: 0;
+}
+.col-xs-2.listing-heading.local {
+  padding-left: 0;
+}
+p {
+  text-align: left;
+}
+
+.col-xs-2.listing-price.searchPrice p {
+  display: inline-block;
+  margin-right: 2px;
+}
+.col-xs-4.listing-data p {
+  display: inline-block;
+  margin-right: 2px;
+}
+span.krSpan {
+  display: inline-block;
+}
+.listing .listing-data {
+  text-align: left;
+}
+
+.listing-text {
+  font-size: 12px !important;
+}
+ .userCard-header {
+   display: inline-block;
+   margin-top: 10px;
+   width: calc(25% - 3px);
+   font-weight: 600; 
+  }
+ 
+ .userCard-info {
+   display: inline-block;
+   margin-top: 10px;
+   width: calc(25% - 3px);
+  }
+  .userCard-wrapper {
+    margin: 60px 100px;
+    padding: 20px 40px 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    box-shadow: 0px 1px 2px 7px #b0b0b0;
+    background-color: #f4f3f2;
+}
+.placeholderImage {
+  height: auto;
+  width: 140px;
+}
+.userCard-wrapper h1 {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.row.listing {
+  margin-left: 0;
+  margin-right: 0;
 }
