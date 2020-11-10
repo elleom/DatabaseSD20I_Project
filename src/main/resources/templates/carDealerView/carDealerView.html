@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <!-- From the LinkedIn Learning course "jQuery Essential Training" -->
 
@@ -62,13 +62,24 @@
                     <button class="closeX-account">x</button>
                     <h5 class="accountHeader">Your Account</h5>
                     <div class="accountInfo-wrapper">
+
+                        <!-- ################AUTHENTICATED USER PANEL ############ -->
                         <div class="account-wrapper">
                             <div class="smallHeader">User name:</div>
-                            <div class="userName" id="user-name">Barracuda</div>
+                            <div class="userName" id="user-name">
+                                <strong>
+                                    <div sec:authentication="name"></div> <!-- displays auth users name -->
+                                </strong>
+                            </div>
                         </div>
+
                         <div class="account-wrapper">
                             <div class="smallHeader">Location:</div>
-                            <div class="location" id="user-location">Valby</div>
+                            <div class="location" id="user-location">
+                                <strong>
+                                    <div th:text="${#authentication.name}"></div> <!-- displays auth users location -->
+                                </strong>
+                            </div>
                         </div>
                         <div class="password-wrapper">
                             <div class="changePassword">Change your password</div>

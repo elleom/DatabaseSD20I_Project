@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <!-- From the LinkedIn Learning course "jQuery Essential Training" -->
 
@@ -64,7 +64,7 @@
                     <div class="accountInfo-wrapper">
                         <div class="account-wrapper">
                             <div class="smallHeader">User name:</div>
-                            <div class="userName" id="user-name">Barracuda</div>
+                            <div class="userName" id="user-name"><div sec:authentication="name"></div></div>
                         </div>
                         <div class="account-wrapper">
                             <div class="smallHeader">Location:</div>
