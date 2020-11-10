@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`users` (
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB
-AUTO_INCREMENT = 31
+AUTO_INCREMENT = 32
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`invoice` (
     FOREIGN KEY (`order_id`)
     REFERENCES `car_dealership`.`orders` (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -262,6 +262,38 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`users_users` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `car_dealership`.`roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `car_dealership`.`roles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `car_dealership`.`roles_has_users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `car_dealership`.`roles_has_users` (
+  `roles_id` INT NOT NULL,
+  `users_ID` INT NOT NULL,
+  PRIMARY KEY (`roles_id`, `users_ID`),
+  INDEX `fk_roles_has_users_users1_idx` (`users_ID` ASC) VISIBLE,
+  INDEX `fk_roles_has_users_roles1_idx` (`roles_id` ASC) VISIBLE,
+  CONSTRAINT `fk_roles_has_users_roles1`
+    FOREIGN KEY (`roles_id`)
+    REFERENCES `car_dealership`.`roles` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_roles_has_users_users1`
+    FOREIGN KEY (`users_ID`)
+    REFERENCES `car_dealership`.`users` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 USE `car_dealership` ;
 

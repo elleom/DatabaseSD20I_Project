@@ -62,13 +62,25 @@
                     <button class="closeX-account">x</button>
                     <h5 class="accountHeader">Your Account</h5>
                     <div class="accountInfo-wrapper">
+
+                        <!-- ################AUTHENTICATED USER PANEL ############ -->
                         <div class="account-wrapper">
                             <div class="smallHeader">User name:</div>
-                            <div class="userName" id="user-name"><div sec:authentication="name"></div></div>
+                            <div class="userName" id="user-name">
+                                <strong>
+                                    <span th:text="${#authentication.name}"
+                                    <div sec:authentication="name"></div> <!-- displays auth users name -->
+                                </strong>
+                            </div>
                         </div>
+
                         <div class="account-wrapper">
                             <div class="smallHeader">Location:</div>
-                            <div class="location" id="user-location">Valby</div>
+                            <div class="location" id="user-location">
+                                <strong>
+                                    <div th:text="${#authentication.credentials}"></div> <!-- displays auth users location -->
+                                </strong>
+                            </div>
                         </div>
                         <div class="password-wrapper">
                             <div class="changePassword">Change your password</div>

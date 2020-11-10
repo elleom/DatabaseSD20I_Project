@@ -68,6 +68,7 @@
                             <div class="smallHeader">User name:</div>
                             <div class="userName" id="user-name">
                                 <strong>
+                                    <span th:text="${#authentication.name}"
                                     <div sec:authentication="name"></div> <!-- displays auth users name -->
                                 </strong>
                             </div>
@@ -77,7 +78,7 @@
                             <div class="smallHeader">Location:</div>
                             <div class="location" id="user-location">
                                 <strong>
-                                    <div th:text="${#authentication.name}"></div> <!-- displays auth users location -->
+                                    <div th:text="${#authentication.credentials}"></div> <!-- displays auth users location -->
                                 </strong>
                             </div>
                         </div>

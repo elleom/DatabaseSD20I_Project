@@ -3,7 +3,6 @@ package com.dbproject.security;
 import com.dbproject.entities.Users;
 import com.dbproject.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,6 +22,6 @@ public class MyUserDetailService implements UserDetailsService {
             throw new UsernameNotFoundException("Bad Credentials");
         }
 
-        return new UserMain(user);
+        return new UserPrincipal(user);
     }
 }

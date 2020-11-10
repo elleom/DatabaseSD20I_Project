@@ -1,24 +1,29 @@
 package com.dbproject.security;
 
+import com.dbproject.entities.Role;
 import com.dbproject.entities.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
-public class UserMain implements UserDetails {
+public class UserPrincipal implements UserDetails {
 
     private Users user;
 
-    public UserMain(Users user) {
+    public UserPrincipal(Users user) {
         this.user = user;
     }
 
-    @Override
+    @Override //This method returns a set of roles (authorities) to be used by Spring Security in the authorization process.
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+        Set<Role> roles = user.getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return authorities;
     }
 
     @Override
