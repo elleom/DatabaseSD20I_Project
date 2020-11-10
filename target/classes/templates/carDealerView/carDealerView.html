@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 
 <!-- From the LinkedIn Learning course "jQuery Essential Training" -->
 
@@ -25,7 +27,7 @@
         </li>
         <li style="float:right">
             <div class="loginBtn menuBtn" id="loginBtn">
-                Login
+                <a href="/logout" >Logout</a>
             </div>
             <div class="accountBtn menuBtn" id="accountBtn">
                 Account
@@ -55,15 +57,15 @@
                 </div>
             </div>
         </div>
-        <div class="sModal modal-account" id="account-modal" style="display: none;">
+        <div sec:authorize="isAuthenticated()" class="sModal modal-account" id="account-modal" style="display: none;">
             <div class="modalStart">
                 <div class="accountModal-container">
                     <button class="closeX-account">x</button>
                     <h5 class="accountHeader">Your Account</h5>
                     <div class="accountInfo-wrapper">
                         <div class="account-wrapper">
-                            <div class="smallHeader">User name:</div>
-                            <div class="userName" id="user-name">Barracuda</div>
+                            <div class="smallHeader" sec:authentication="name">user.name:</div>
+                            <div class="userName" id="user-name" >Barracuda <span sec:authentication="name"></span></div>
                         </div>
                         <div class="account-wrapper">
                             <div class="smallHeader">Location:</div>
