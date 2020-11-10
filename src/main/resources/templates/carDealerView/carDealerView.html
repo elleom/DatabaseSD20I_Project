@@ -6,8 +6,8 @@
 <head>
     <title>Car Dealership</title>
     <link th:href="@{/css/style.css}" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery-3.5.1.js}"></script>
     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
 </head>
@@ -32,6 +32,13 @@
                 Account
             </div>
         </li>
+        <div sec:authorize="hasAuthority('ADMIN')">
+            <li style="float:right">
+                <div class="accountBtn menuBtn" id="accountBtn">
+                    <a href="/orders">Orders</a>
+                </div>
+            </li>
+        </div>
     </ul>
 </header>
 
@@ -68,7 +75,6 @@
                             <div class="smallHeader">User name:</div>
                             <div class="userName" id="user-name">
                                 <strong>
-                                    <span th:text="${#authentication.name}"
                                     <div sec:authentication="name"></div> <!-- displays auth users name -->
                                 </strong>
                             </div>
@@ -78,7 +84,7 @@
                             <div class="smallHeader">Location:</div>
                             <div class="location" id="user-location">
                                 <strong>
-                                    <div th:text="${#authentication.credentials}"></div> <!-- displays auth users location -->
+                                    <div> USER LOCATION HERE</div> <!-- displays auth users location -->
                                 </strong>
                             </div>
                         </div>
