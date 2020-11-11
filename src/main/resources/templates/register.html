@@ -52,7 +52,7 @@
                     <div class="controls">
                         <select>
                             <option id="locationUser" name="locationUser" th:each="location : ${locations}"
-                                    th:value="${location.name}" th:text="${location.name}">data.location.name
+                                    th:value="${location.id}" th:text="${location.name}">data.location.name
                             </option>
                         </select>
                         <p class="help-block">Please select your city</p>
@@ -91,7 +91,7 @@
                     <button class="closeX">x</button>
                     <h1>Login to Your Account</h1><br>
                     <form>
-                        <input style="color: #2d2d2d" type="text" name="user" placeholder="Username">
+                        <input type="text" name="user" placeholder="Username">
                         <input type="password" name="pass" placeholder="Password">
                         <input type="submit" name="login" class="login loginmodal-submit" value="Login">
                     </form>
