@@ -180,10 +180,17 @@ samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
+/*so input field is not white colored
+ */
+
+input[type=text] {
+  color: #2d2d2d;
+}
+
+
 button,
 input,
 optgroup,
-select,
 textarea {
   color: inherit;
   font: inherit;

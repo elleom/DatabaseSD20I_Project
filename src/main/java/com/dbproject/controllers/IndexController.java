@@ -25,12 +25,6 @@ public class IndexController {
         return "carDealerView/carDealerView";
     }
 
-    @RequestMapping({"register","register.html"})
-    public String getReg(Model model){
-
-        return "public/register";
-    }
-
     @RequestMapping("/login")
     public String loginPage(){
         return "public/login";

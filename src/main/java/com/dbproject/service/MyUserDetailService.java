@@ -1,7 +1,8 @@
-package com.dbproject.security;
+package com.dbproject.service;
 
 import com.dbproject.entities.Users;
 import com.dbproject.repositories.UsersRepository;
+import com.dbproject.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
