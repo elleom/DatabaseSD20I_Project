@@ -24,7 +24,8 @@
 <div class="pageWrapper registerActive">
 
     <div class="registerWrapper">
-        <form class="form-horizontal" action='' method="POST">
+        <form autocomplete="off" class="form-horizontal" action='#' th:action="@{/register}"
+              th:object="${user}" method="POST">
             <fieldset>
                 <div id="legend">
                     <legend class="registerHeader">Register</legend>
