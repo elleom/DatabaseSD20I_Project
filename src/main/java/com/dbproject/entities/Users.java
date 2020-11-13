@@ -24,7 +24,7 @@ public class Users {
     @JoinColumn(name = "user_id")
     private Set<Vehicle> vehicles = new HashSet<>();
 
-    protected Users() {
+    public Users() {
         //needed for JPA
     }
     //rating can be null, user start with no cars

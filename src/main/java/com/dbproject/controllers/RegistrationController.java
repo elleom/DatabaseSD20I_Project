@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class RegistrationController {
 
+    @Autowired
     private UserService userService;
     private LocationRepository locationRepository;
 
@@ -28,36 +29,12 @@ public class RegistrationController {
 
     //returns registration template
     @RequestMapping(value = {"/register","/register.html"}, method = RequestMethod.GET)
-    public ModelAndView getReg(ModelAndView model, Users user){
-        model.addObject("user", user);
-        model.addObject("locations", locationRepository.findAll());
-        model.setViewName("register");
+    public String getReg(Model model){
+        Users user = new Users();
+        model.addAttribute("user", user);
+        model.addAttribute("locations", locationRepository.findAll());
 
-        return model;
-    }
-    // Process form input data
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView processRegistrationForm(ModelAndView modelAndView, Users user, BindingResult bindingResult, HttpServletRequest request) {
-
-        // Lookup user in database by e-mail
-        Users userExists = userService.findByUserName(user.getUserName());
-
-        System.out.println(userExists);
-
-        if (userExists != null) {
-            modelAndView.addObject("alreadyRegisteredMessage", "Oops!  There is already a user registered with the email provided.");
-            modelAndView.setViewName("register");
-            bindingResult.reject("userName");
-        }
-
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("register");
-        } else {
-            userService.saveUser(user);
-            String appUrl = request.getScheme() + "://" + request.getServerName();
-            modelAndView.setViewName("register");
-        }
-        return modelAndView;
+        return "/register";
     }
 
 }
