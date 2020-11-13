@@ -1,21 +1,26 @@
 package com.dbproject.controllers;
 
 import com.dbproject.entities.Users;
+import com.dbproject.repositories.LocationRepository;
 import com.dbproject.repositories.UsersRepository;
+import com.dbproject.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UsersController {
 
+    @Autowired
     private final UsersRepository usersRepository;
 
-    public UsersController(UsersRepository usersRepository) {
+    @Autowired
+    private final LocationRepository locationRepository;
+
+    public UsersController(UsersRepository usersRepository, LocationRepository locationRepository) {
         this.usersRepository = usersRepository;
+        this.locationRepository = locationRepository;
     }
 
     @RequestMapping("/users")
@@ -29,10 +34,22 @@ public class UsersController {
         return "users/show";
     }
 
+    //returns registration template
+    @RequestMapping(value = {"/register","/register.html"}, method = RequestMethod.GET)
+    public String getReg(Model model){
+        Users user = new Users();
+        model.addAttribute("user", user);
+        model.addAttribute("locations", locationRepository.findAll());
+
+        return "/register";
+    }
+
     @PostMapping("/saveUser")
-    public void saveUser(@ModelAttribute("user") Users user){ //Model attribute bids the form data to the object
+    public String saveUser(@ModelAttribute("user") Users user){ //Model attribute bids the form data to the object
         //save user to database
         usersRepository.save(user);
+
+        return "/regSuccess";
 
     }
 
