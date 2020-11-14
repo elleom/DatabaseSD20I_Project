@@ -84,7 +84,7 @@
                             <div class="smallHeader">Location:</div>
                             <div class="location" id="user-location">
                                 <strong>
-                                    <div> USER LOCATION HERE</div> <!-- displays auth users location -->
+                                    <div><p th:text="${currentUser.location.name}">USER.LOCATION</p></div> <!-- displays auth users location -->
                                 </strong>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                             <button class="addCar">Add Car</button>
                         </div>
                         <div style="text-align: right;">
-                            <a href="#" class="view-cars">View Cars</a>
+                            <a href="#" class="view-cars">My cars</a>
                         </div>
 
                     </div>
