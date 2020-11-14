@@ -9,7 +9,7 @@ import java.util.Date;
 public class Invoice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
     private Date date;
     private Long amount;

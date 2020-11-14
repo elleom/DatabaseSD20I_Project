@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Audit {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String type;
     private String date;

@@ -350,6 +350,17 @@ update vehicle
 
 DELIMITER ;
 
+DELIMITER $$
+USE `car_dealership`$$
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `car_dealership`.`assignUserRole`
+AFTER INSERT ON `car_dealership`.`users`
+FOR EACH ROW
+insert into users_roles(role_id, user_id)
+        values (1, (select id from users where LAST_INSERT_ID(users.ID)));$$
+DELIMITER ;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
