@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Car Dealership</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.5.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+</head>
+<body>
+<header>
+    <ul class="horizontal">
+        <div class="frontPageHeader" onclick="window.location.href='/index'"></div>
+        <li style="float:right">
+            <div class="loginBtn menuBtn" id="loginBtn">
+                <a href="/login">Login</a>
+            </div>
+        </li>
+    </ul>
+</header>
+<div class="pageWrapper registerActive">
+
+    <div class="registerWrapper">
+
+        <!-- ########################################### THYMELEAF FORM ######################## -->
+
+        <!-- ######################### START VEHICLE ######################## -->>
+        <form autocomplete="off" class="form-horizontal" action='#' th:action="@{/saveVehicle}"
+              th:object="${newVehicle}" method="POST">
+            <fieldset>
+                <div id="legend">
+                    <legend class="registerHeader">Add new vehicle</legend>
+                </div>
+                <div class="control-group">
+
+                    <!-- Vehicle Location -->
+                    <label class="control-label" for="year">Year</label>
+                    <div class="controls">
+
+                            <input id="year" type="number" name="vehicleLocation" min="1900" max="2020" placeholder="1900" value="1980" th:field="*{year}"/>
+
+                    </div>
+                </div>
+                <div class="control-group">
+
+                    <!-- ######################### START EMAIL ######################## -->
+
+                    <label class="control-label" for="value">Value</label>
+                    <div class="controls">
+                        <input type="number" id="value" name="value" placeholder="how much you want for it?" min="1000" max="10000000" step="500" class="input-xlarge" th:field="*{value}">
+                        <p class="help-block">Enter vehicle's cost</p>
+                    </div>
+                </div>
+                <div class="control-group">
+
+                    <!-- ######################### START LOCATION ######################## -->
+
+                    <label class="control-label" for="locationUser">City Name</label>
+                    <div class="controls">
+                        <select th:field="*{model}">
+                            <option id="locationUser" name="locationUser" th:each="location : ${locations}"
+                                    th:value="${location.id}" th:text="${location.name}">data.location.name>
+
+                            </option>
+                        </select>
+                        <p class="help-block">Please select your city</p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Password-->
+                    <label class="control-label" for="password">Password</label>
+                    <div class="controls">
+                        <input type="password" id="password" name="password" placeholder="Choose your password" class="input-xlarge" th:field="*{model}">
+                        <p class="help-block">Password should be at least 4 characters</p>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <!-- Button -->
+                    <div class="controls">
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <div class="sModal modal-login" id="login-modal" style="display: none;">
+            <div class="modalStart">
+                <div class="loginmodal-container">
+                    <button class="closeX">x</button>
+                    <h1>Login to Your Account</h1><br>
+                    <form>
+                        <input type="text" name="user" placeholder="Username">
+                        <input type="password" name="pass" placeholder="Password">
+                        <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                    </form>
+
+                    <div class="login-help">
+                        <a class="registerBtn" href="register.html">Register</a> - <a href="#">Forgot Password</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sModal modal-account" id="account-modal" style="display: none;">
+            <div class="modalStart">
+                <div class="accountModal-container">
+                    <button class="closeX-account">x</button>
+                    <h5 class="accountHeader">Your Account</h5>
+                    <div class="accountInfo-wrapper">
+                        <div class="account-wrapper">
+                            <div class="smallHeader">User name:</div>
+                            <div class="userName" id="user-name">Barracuda</div>
+                        </div>
+                        <div class="account-wrapper">
+                            <div class="smallHeader">Location:</div>
+                            <div class="location" id="user-location">Valby</div>
+                        </div>
+                        <div class="password-wrapper">
+                            <div class="changePassword">Change your password</div>
+                            <input type="password" name="pass" placeholder="********">
+                        </div>
+                        <div>
+                            <button class="addCar">Add Car</button>
+                        </div>
+                        <div style="text-align: right;">
+                            <a href="#" class="view-cars">View Cars</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
