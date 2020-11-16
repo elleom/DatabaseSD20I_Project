@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <!-- From the LinkedIn Learning course "jQuery Essential Training" -->
 
@@ -26,7 +27,7 @@
         </li>
         <li style="float:right">
             <div class="loginBtn menuBtn" id="loginBtn">
-                <a href="/logout" >Logout</a>
+                <a href="/logout">Logout</a>
             </div>
             <div class="accountBtn menuBtn" id="accountBtn">
                 Account
@@ -45,7 +46,7 @@
 <body>
 
     <div class="pageWrapper">
-        
+
         <div class="sModal modal-login" id="login-modal" style="display: none;">
             <div class="modalStart">
                 <div class="loginmodal-container">
@@ -84,7 +85,9 @@
                             <div class="smallHeader">Location:</div>
                             <div class="location" id="user-location">
                                 <strong>
-                                    <div><p th:text="${currentUser.location.name}">USER.LOCATION</p></div> <!-- displays auth users location -->
+                                    <div>
+                                        <p th:text="${currentUser.location.name}">USER.LOCATION</p>
+                                    </div> <!-- displays auth users location -->
                                 </strong>
                             </div>
                         </div>
@@ -103,7 +106,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         <div class="searchWrapper">
             <div th:each="vehicle : ${vehicles}" class="row listing">
@@ -111,10 +114,7 @@
 
 
                     <div style="position: relative; overflow: hidden;">
-                        <img style="z-index: 1;"
-                            src="https://media-download.ecgh.dk/images/bTwAAOSwvL1fahSe/S157X111/picture.jpg"
-                            data-echo="https://media-download.ecgh.dk/images/bTwAAOSwvL1fahSe/S157X111/picture.jpg"
-                            alt="Citroën C3 1,2 PT 82 Feel+ 5d" class="img-thumbnail listing-thumbs-lg">
+                        <img style="z-index: 1;" class="img-thumbnail listing-thumbs-lg">
 
                     </div>
 
@@ -122,6 +122,7 @@
                 <div class="col-xs-4">
 
                     <div class="row">
+                        <a th:text="${vehicle.model.make.name}" class="listing-heading darkLink">DATA.MODEL.NAME</a>
                         <a th:text="${vehicle.model.name}" class="listing-heading darkLink">DATA.MODEL.NAME</a>
                     </div>
                     <div class="row">
@@ -138,74 +139,80 @@
                 </div>
                 <div class="col-xs-6">
                     <div class="row">
-                        <div class="col-xs-4 listing-heading"><p>Km's done</p></div>
-                        <div class="col-xs-2 listing-heading local"><p>Location</p></div>
-                        <div class="col-xs-2 listing-heading listing-price searchPrice" id="price"><p>Price</p></div>
+                        <div class="col-xs-4 listing-heading">
+                            <p>Km's done</p>
+                        </div>
+                        <div class="col-xs-2 listing-heading local">
+                            <p>Location</p>
+                        </div>
+                        <div class="col-xs-2 listing-heading listing-price searchPrice" id="price">
+                            <p>Price</p>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4 listing-data listing-text" id="kmsDone"><p th:text="${vehicle.kms}"> kmsDone</p><span class="krSpan">km</span></div>
-                        <div class="col-xs-2 listing-region listing-text" id="location"><p th:text="${vehicle.location.name}">Location</p></div>
-                        <div class="col-xs-2 listing-price searchPrice" id="price"><p th:text="${vehicle.value}">Price</p><span class="krSpan">kr.</span></div>
+                        <div class="col-xs-4 listing-data listing-text" id="kmsDone">
+                            <p th:text="${vehicle.kms}"> kmsDone</p><span class="krSpan">km</span>
+                        </div>
+                        <div class="col-xs-2 listing-region listing-text" id="location">
+                            <p th:text="${vehicle.location.name}">Location</p>
+                        </div>
+                        <div class="col-xs-2 listing-price searchPrice" id="price">
+                            <p th:text="${vehicle.value}">Price</p><span class="krSpan">kr.</span>
+                        </div>
                     </div>
-                
+
                     <div class="sModal modal-cars" id="car-modal" style="display: none;">
                         <div class="modalStart">
                             <div class="carModal-container">
                                 <button class="closeX">x</button>
-                                <p class="carHeader" th:text="${vehicle.kms}">Ferrari 812 Superfast 6,5 DCT 2d</p>
                                 <div class="carInfo-wrapper">
                                     <div class="car-wrapper">
                                         <div class="smallHeader">Car Information</div>
                                         <div class="carParagraph" id="car-info">
-            
+
                                             <!-- TODO check this shit out -->
                                             <!-- <ul th:each="user : ${users}"></ul>
                                             <li th:text="${users.ID}">data.name</li> -->
-            
-                                            <ul>
-                                                <li >vehicle.model.name</li>
-                                                <li >vehicle.model.make.name</li>
-                                                <li >vehicle.location.name</li>
-                                                <li >vehicle.price or value</li>
-                                            </ul>
-            
-            
-                                        </div>
-                                    </div>
-                                    <div class="car-wrapper">
-                                        <div class="smallHeader">Location:</div>
-                                        <div class="carInfoInline car-location" id="car-location">Valby</div>
-                                    </div>
-                                    <div class="car-wrapper">
-                                        <div class="smallHeader">Colour:</div>
-                                        <div class="carInfoInline car-colour" id="car-colour">Black</div>
-                                    </div>
-                                    <div class="car-wrapper">
-                                        <div class="smallHeader">Fuel:</div>
-                                        <div class="carInfoInline car-colour" id="car-fuel">Benzin</div>
-                                    </div>
-                                    <div class="car-wrapper">
-                                        <div class="smallHeader">Kilometers done:</div>
-                                        <div class="carInfoInline car-kms" id="car-kms">2.000</div>
-                                    </div>
-                                    <div class="car-wrapper">
-                                        <div class="smallHeader">Horsepower:</div>
-                                        <div class="carInfoInline car-hp" id="car-kms">750Hp/800NM</div>
-                                    </div>
-                                    <div class="car-wrapper">
-                                        <div class="smallHeader">Price:</div>
-                                        <div class="carInfoInline car-price" id="car-price">2.013.454 kr.</div>
-                                    </div>
+
+                                            <div class="car-wrapper">
+                                                <div class="smallHeader carInfoInline" th:text="${vehicle.model.make.name}"></div>
+                                                <div class="carInfoInline" th:text="${vehicle.model.name}">vehicle.model.name</div>
+                                            </div>
+                                            <div class="car-wrapper">
+                                                <div class="smallHeader">Year Made:</div>
+                                                <div th:text="${vehicle.year}" class="carInfoInline car-location" id="car-year">1999</div>
+                                            </div>
+                                            <div class="car-wrapper">
+                                                <div class="smallHeader">Location:</div>
+                                                <div th:text="${vehicle.location.name}" class="carInfoInline car-location" id="car-location">Valby</div>
+                                            </div>
+                                            <div class="car-wrapper">
+                                                <div class="smallHeader">Colour:</div>
+                                                <div th:text="${vehicle.colour}" class="carInfoInline car-colour" id="car-colour">Black</div>
+                                            </div>
+                                            <div class="car-wrapper">
+                                                <div class="smallHeader">Kilometers done:</div>
+                                                <div th:text="${vehicle.kms}" class="carInfoInline car-kms" id="car-kms">2.000</div>
+                                            </div>
+                                            <div class="car-wrapper">
+                                                <div class="smallHeader">Horsepower:</div>
+                                                <div th:text="${vehicle.hp}" class="carInfoInline car-hp" id="car-hp">750Hp/800NM</div>
+                                            </div>
+                                            <div class="car-wrapper">
+                                                <div class="smallHeader">Price:</div>
+                                                <div th:text="${vehicle.value}" class="carInfoInline car-price" id="car-price">2.013.454 kr.</div>
+                                            </div>
+                                     
                                     <div>
-                                        <button class="buyCar">Buy Car</button>
+                                        <button class="btn btn-success buyCar">Buy Car</button>
                                     </div>
-            
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-     
+
             </div>
 
         </div>
@@ -214,4 +221,5 @@
 <footer>
     @DatabaseProject CarDealerShip
 </footer>
+
 </html>

@@ -10607,13 +10607,16 @@ ul.horizontal li {
 }
 .car-wrapper .smallHeader {
   display: inline-block;
+  font-weight: bold;
+}
+.carInfo-wrapper {
+  font-size: 18px;
 }
 .sModal.modal-cars {
   right: 40%;
   position: absolute;
-  height: 630px;
   width: 700px;
-  text-align: center;
+
 }
 .searchWrapper {
   display: none;
