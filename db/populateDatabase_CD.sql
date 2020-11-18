@@ -1466,6 +1466,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 );
 
+INSERT INTO `roles` (id,`name`) VALUES (1, 'USER');
+INSERT INTO `roles` (id, `name`) VALUES (2, 'ADMIN');
+
 INSERT INTO `users` (`id`, `user_name`, `rating`, `password`, `email`,`location_ID`) VALUES 
 (1, 'barracuda', NULL, 'password1', 'barracuda@emailformat.com',1),
 (2, 'highvoltage', NULL, 'password1', 'highvoltage@emailformat.com',2),
@@ -1496,39 +1499,40 @@ INSERT INTO `users` (`id`, `user_name`, `rating`, `password`, `email`,`location_
 (27, 'getaway', NULL, 'password1', 'getaway@emailformat.com',7),
 (28, 'rendezvous', NULL, 'password1', 'wraith@emailformat.com',8),
 (29, 'carzilla', NULL, 'password1', 'carzilla@emailformat.com',8),
-(30, 'boomer', NULL, 'password1', 'boomer@emailformat.com',3);
+(30, 'boomer', NULL, 'password1', 'boomer@emailformat.com',3),
+(31, 'test', NULL, 'password', 'leo@email.com', 3);
 
-insert into vehicle(ID, year, colour, fuel_type, Kms, hp, value, available, location_ID, user_ID, model_ID)
-values (1, 2011, 'White', 'F', 20000, 76, 25000,1, 4, 3, 123),
-       (2, 2007, 'Black', 'D', 199999, 45, 15000, 1, 3, 6,444),
-       (3, 1998, 'Green', 'D', 35999, 67, 25000, 1, 2, 7,23),
-       (4, 2001, 'Yellow', 'D', 45999, 45, 24000, 1, 23, 12,12),
-       (5, 2019, 'Blue', 'D', 55999, 76, 99000, 1, 12, 16,54),
-       (6, 2015, 'Black', 'F', 110000, 76, 15000, 1, 4, 18,324),
-       (7, 2010, 'Black', 'D', 12999, 76, 35000, 1, 23, 3,256),
-       (8, 2009, 'White', 'D', 99999, 76, 65000, 1, 6, 25,675),
-       (9, 2010, 'White', 'D', 35689, 76, 89000, 1, 7, 11,1000),
-       (10, 2010, 'Green', 'D', 50200, 76, 65000, 1, 8, 12,100),
-       (11, 1997, 'Red', 'D', 87000, 76, 65000, 1, 4, 14,96),
-       (12, 2003, 'Purple', 'D', 205400, 76, 65000, 1, 13, 2, 751),
-       (13, 2010, 'Blue', 'F', 99999, 76, 35000, 1, 4, 23, 234),
-       (14, 1985, 'Red', 'D', 399999, 76, 15000, 1, 4, 8, 345),
-       (15, 2010, 'Yellow', 'D', 99999, 76, 23000, 1, 9, 5,234),
-       (16, 1999, 'Pink', 'F', 299900, 76, 24000, 1, 2, 6,234),
-       (17, 2001, 'Grey', 'D', 35000, 76, 33000, 1, 4, 7,267),
-       (18, 2010, 'Grey', 'D', 150000, 76, 37000, 1, 13, 3,189),
-       (19, 2010, 'Black', 'F', 155000, 76, 12000, 1, 12, 8,109),
-       (20, 2001, 'Blue', 'D', 210000, 76, 12000, 1, 15, 15,297),
-       (21, 2010, 'Green', 'D', 67080, 76, 40000, 1, 3, 3,568),
-       (22, 2018, 'Yellow', 'F', 95040, 76, 65000, 1, 6, 9,56),
-       (23, 2018, 'White', 'D', 199020, 76, 55000, 1, 9, 22,98),
-       (24, 2017, 'Black', 'D', 180000, 76, 5000, 1, 12, 19,256),
-       (25, 2016, 'Grey', 'D', 56000, 76, 58000, 1, 4, 4,912),
-       (26, 2015, 'Blue', 'F', 78000, 76, 65000, 1, 4, 7,43),
-       (27, 2010, 'White', 'D', 45650, 76, 65000, 1, 4, 8,65),
-       (28, 2004, 'Purple', 'F', 99999, 76, 18500, 1, 4, 5,89),
-       (29, 2009, 'Green', 'D', 156000, 76, 65000, 1, 4, 1,35),
-       (30, 2010, 'Black', 'D', 210500, 76, 65000, 1, 4, 23,2);
+insert into vehicle(ID, year, colour, fuel_type, Kms, hp, value, available, location_ID, user_ID,make_ID, model_ID)
+values (1, 2011, 'White', 'F', 20000, 76, 25000,1, 4, 3,8, 123), --
+       (2, 2007, 'Black', 'D', 199999, 45, 15000, 1, 3, 6,22,444), --
+       (3, 1998, 'Green', 'D', 35999, 67, 25000, 1, 2, 7,1,23), --
+       (4, 2001, 'Yellow', 'D', 45999, 45, 24000, 1, 23, 12,1,12), --
+       (5, 2019, 'Blue', 'D', 55999, 76, 99000, 1, 12, 16,5,54), --
+       (6, 2015, 'Black', 'F', 110000, 76, 15000, 1, 4, 18,14,324),
+       (7, 2010, 'Black', 'D', 12999, 76, 35000, 1, 23, 3,11,256),
+       (8, 2009, 'White', 'D', 99999, 76, 65000, 1, 6, 25,36,675),
+       (9, 2010, 'White', 'D', 35689, 76, 89000, 1, 7, 11,48,1000),
+       (10, 2010, 'Green', 'D', 50200, 76, 65000, 1, 8, 12,8,100),
+       (11, 1997, 'Red', 'D', 87000, 76, 65000, 1, 4, 14,8,96),
+       (12, 2003, 'Purple', 'D', 205400, 76, 65000, 1, 13, 2,39, 751),
+       (13, 2010, 'Blue', 'F', 99999, 76, 35000, 1, 4, 23, 10,234),
+       (14, 1985, 'Red', 'D', 399999, 76, 15000, 1, 4, 8,17, 345),
+       (15, 2010, 'Yellow', 'D', 99999, 76, 23000, 1, 9, 5,10,234),
+       (16, 1999, 'Pink', 'F', 299900, 76, 24000, 1, 2, 6,10,234),
+       (17, 2001, 'Grey', 'D', 35000, 76, 33000, 1, 4, 7,11,267),
+       (18, 2010, 'Grey', 'D', 150000, 76, 37000, 1, 13, 3,8,189),
+       (19, 2010, 'Black', 'F', 155000, 76, 12000, 1, 12, 8,8,109),
+       (20, 2001, 'Blue', 'D', 210000, 76, 12000, 1, 15, 15,12,297),
+       (21, 2010, 'Green', 'D', 67080, 76, 40000, 1, 3, 3,29,568),
+       (22, 2018, 'Yellow', 'F', 95040, 76, 65000, 1, 6, 9,5,56),
+       (23, 2018, 'White', 'D', 199020, 76, 55000, 1, 9, 22,8,98),
+       (24, 2017, 'Black', 'D', 180000, 76, 5000, 1, 12, 19,11,256),
+       (25, 2016, 'Grey', 'D', 56000, 76, 58000, 1, 4, 4,44,912),
+       (26, 2015, 'Blue', 'F', 78000, 76, 65000, 1, 4, 7,4,43),
+       (27, 2010, 'White', 'D', 45650, 76, 65000, 1, 4, 8,5,65),
+       (28, 2004, 'Purple', 'F', 99999, 76, 18500, 1, 4, 5,7,89),
+       (29, 2009, 'Green', 'D', 156000, 76, 65000, 1, 4, 1,3,35),
+       (30, 2010, 'Black', 'D', 210500, 76, 65000, 1, 4, 23,1,2);
 
 select * from vehicle;
 
@@ -1547,39 +1551,40 @@ select * from orders where orders.ID = 1;
 
 ################################### UPD 10-11 ###############################################################
 
-INSERT INTO `roles` (`name`) VALUES ('USER');
-INSERT INTO `roles` (`name`) VALUES ('ADMIN');
-
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (31, 2); -- user TEST has role ADMIN
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (1, 1); -- user something has role USER
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (2, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (3, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (4, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (5, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (6, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (7, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (8, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (9, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (10, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (11, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (12, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (13, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (14, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (15, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (16, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (17, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (18, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (19, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (20, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (21, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (22, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (23, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (24, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (25, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (26, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (27, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (28, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (29, 1);
-INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (30, 1);
 
 
+
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (31, 2); -- user TEST has role ADMIN
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (1, 1); -- user something has role USER
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (2, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (3, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (4, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (5, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (6, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (7, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (8, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (9, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (10, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (11, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (12, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (13, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (14, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (15, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (16, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (17, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (18, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (19, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (20, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (21, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (22, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (23, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (24, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (25, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (26, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (27, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (28, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (29, 1);
+INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (30, 1);
+
+
+select * from roles join users_roles ur on roles.id = ur.roles_id join users u on u.ID = ur.users_ID;

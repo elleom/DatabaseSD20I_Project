@@ -24,6 +24,9 @@ public class Vehicle {
     private Users user;
 
     @ManyToOne
+    private Make make;
+
+    @ManyToOne
     private Model model;
 
     //TODO check if this should be a fk, if so can it be null??
@@ -127,6 +130,14 @@ public class Vehicle {
 
     public void setOrderID(Long orderID) {
         this.orderID = orderID;
+    }
+
+    public Make getMake() {
+        return make;
+    }
+
+    public void setMake(Make make) {
+        this.make = make;
     }
 
     @Override

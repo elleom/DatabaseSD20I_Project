@@ -39,7 +39,7 @@ public class VehicleController {
         model.addAttribute("newVehicle", vehicle);
         model.addAttribute("locations", locationRepository.findAll());
         model.addAttribute("models", modelRepository.findAll());
-        model.addAttribute("make", makeRepository.findAll());
+        model.addAttribute("makes", makeRepository.findAll());
         return "/vehicles/newVehicle";
     }
 

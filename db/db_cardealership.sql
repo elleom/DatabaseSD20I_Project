@@ -141,15 +141,20 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`vehicle` (
   `user_id` INT NULL DEFAULT NULL,
   `model_ID` INT NOT NULL,
   `orderID` INT NULL DEFAULT NULL,
-  PRIMARY KEY (`ID`, `model_ID`),
+  `make_ID` INT NOT NULL,
+  PRIMARY KEY (`ID`, `model_ID`, `make_ID`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE,
   INDEX `fk_vehicle_location1_idx` (`location_id` ASC) VISIBLE,
   INDEX `fk_vehicle_users1_idx` (`user_id` ASC) VISIBLE,
   INDEX `fk_vehicle_model1_idx` (`model_ID` ASC) VISIBLE,
   INDEX `fk_vehicle_orders1_idx` (`orderID` ASC) VISIBLE,
+  INDEX `fk_vehicle_make1_idx` (`make_ID` ASC) VISIBLE,
   CONSTRAINT `fk_vehicle_location1`
     FOREIGN KEY (`location_id`)
     REFERENCES `car_dealership`.`location` (`ID`),
+  CONSTRAINT `fk_vehicle_make1`
+    FOREIGN KEY (`make_ID`)
+    REFERENCES `car_dealership`.`make` (`ID`),
   CONSTRAINT `fk_vehicle_model1`
     FOREIGN KEY (`model_ID`)
     REFERENCES `car_dealership`.`model` (`ID`),
@@ -217,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`invoice` (
     FOREIGN KEY (`order_id`)
     REFERENCES `car_dealership`.`orders` (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -230,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`roles` (
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -259,26 +264,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `car_dealership`.`users_roles`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `car_dealership`.`users_roles` (
-  `role_id` INT NOT NULL,
-  `user_id` INT NOT NULL,
-  PRIMARY KEY (`role_id`, `user_id`),
-  INDEX `fk_roles_has_users_users1_idx` (`user_id` ASC) VISIBLE,
-  INDEX `fk_roles_has_users_roles1_idx` (`role_id` ASC) VISIBLE,
-  CONSTRAINT `fk_roles_has_users_roles1`
-    FOREIGN KEY (`role_id`)
-    REFERENCES `car_dealership`.`roles` (`id`),
-  CONSTRAINT `fk_roles_has_users_users1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `car_dealership`.`users` (`ID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `car_dealership`.`users_users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `car_dealership`.`users_users` (
@@ -292,6 +277,30 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`users_users` (
   CONSTRAINT `rates`
     FOREIGN KEY (`usersID`)
     REFERENCES `car_dealership`.`users` (`ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `car_dealership`.`users_roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `car_dealership`.`users_roles` (
+  `users_ID` INT NOT NULL,
+  `roles_id` INT NOT NULL,
+  PRIMARY KEY (`users_ID`, `roles_id`),
+  INDEX `fk_users_has_roles_roles1_idx` (`roles_id` ASC) VISIBLE,
+  INDEX `fk_users_has_roles_users1_idx` (`users_ID` ASC) VISIBLE,
+  CONSTRAINT `fk_users_has_roles_users1`
+    FOREIGN KEY (`users_ID`)
+    REFERENCES `car_dealership`.`users` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_roles_roles1`
+    FOREIGN KEY (`roles_id`)
+    REFERENCES `car_dealership`.`roles` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -337,28 +346,21 @@ USE `car_dealership`;
 
 DELIMITER $$
 USE `car_dealership`$$
+
 CREATE
 DEFINER=`root`@`localhost`
 TRIGGER `car_dealership`.`makeUnavailable`
 AFTER INSERT ON `car_dealership`.`invoice`
 FOR EACH ROW
 update vehicle
+
         set orderID = (select ID from orders where orders.ID = (select max(orders.ID) from orders)),
+
             available = false
+
        where vehicle.ID = (select vehicle_ID from orders where LAST_INSERT_ID(orders.ID))$$
 
 
-DELIMITER ;
-
-DELIMITER $$
-USE `car_dealership`$$
-CREATE
-DEFINER=`root`@`localhost`
-TRIGGER `car_dealership`.`assignUserRole`
-AFTER INSERT ON `car_dealership`.`users`
-FOR EACH ROW
-insert into users_roles(role_id, user_id)
-        values (1, (select id from users where LAST_INSERT_ID(users.ID)));$$
 DELIMITER ;
 
 SET SQL_MODE=@OLD_SQL_MODE;

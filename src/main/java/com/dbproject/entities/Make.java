@@ -19,6 +19,11 @@ public class Make {
     @JoinColumn(name = "make_ID")
     private Set<Model> models = new HashSet<>();
 
+    @OneToMany
+    @JoinColumn(name = "make_ID")
+    private Set<Vehicle> vehicles = new HashSet<>();
+
+
     public Make() {
     }
 

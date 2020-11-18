@@ -27,7 +27,7 @@
 
         <!-- ########################################### THYMELEAF FORM ######################## -->
 
-        <!-- ######################### START VEHICLE ######################## -->>
+        <!-- ######################### START VEHICLE ######################## -->
         <form autocomplete="off" class="form-horizontal" action='#' th:action="@{/saveVehicle}"
               th:object="${newVehicle}" method="POST">
             <fieldset>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="control-group">
 
-                    <!-- Vehicle Location -->
+                    <!-- ######################### START YEAR ######################## -->
                     <label class="control-label" for="year">Year</label>
                     <div class="controls">
 
@@ -60,7 +60,7 @@
 
                     <label class="control-label" for="locationUser">City Name</label>
                     <div class="controls">
-                        <select th:field="*{model}">
+                        <select th:field="*{location}">
                             <option id="locationUser" name="locationUser" th:each="location : ${locations}"
                                     th:value="${location.id}" th:text="${location.name}">data.location.name>
 
@@ -74,10 +74,19 @@
 
                 <div class="control-group">
                     <!-- Password-->
-                    <label class="control-label" for="password">Password</label>
+                    <label class="control-label" for="vehicleModel">Car make</label>
                     <div class="controls">
-                        <input type="password" id="password" name="password" placeholder="Choose your password" class="input-xlarge" th:field="*{model}">
-                        <p class="help-block">Password should be at least 4 characters</p>
+                        <select th:field="*{model}">
+                            <option id="vehicleMake" name="locationUser" th:each="make : ${makes}"
+                                    th:value="${make.id}" th:text="${make.name}">data.location.name>
+                            </option>
+                        </select>
+                        <select th:field="*{model}">
+                            <option id="vehicleModel" name="locationUser" th:each="make : ${makes}"
+                                    th:value="${make.id}" th:text="${make.name}">data.location.name>
+                            </option>
+                        </select>
+                        <p class="help-block">Select the car's Manufacturer</p>
                     </div>
                 </div>
 
