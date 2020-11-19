@@ -7184,15 +7184,12 @@ input[type="text"]::-ms-clear {
   text-indent: -9999px;
 }
 .counter-number {
-  background: transparent url("/Public/images/ticker.png?20110302") no-repeat;
   height: 220px;
   float: left;
   position: relative;
   width: 12px;
 }
 .counter-number-homepage {
-  background: transparent url("/Public/images/tickerHomepage.png?20121001")
-    no-repeat;
   height: 220px;
   float: left;
   position: relative;

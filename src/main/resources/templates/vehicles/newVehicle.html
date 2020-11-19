@@ -40,17 +40,19 @@
                     <label class="control-label" for="year">Year</label>
                     <div class="controls">
 
-                            <input id="year" type="number" name="vehicleLocation" min="1900" max="2020" placeholder="1900" value="1980" th:field="*{year}"/>
+                        <input id="year" type="number" name="vehicleLocation" min="1900" max="2020" placeholder="1900"
+                               value="1980" th:field="*{year}"/>
 
                     </div>
                 </div>
                 <div class="control-group">
 
-                    <!-- ######################### START EMAIL ######################## -->
+                    <!-- ######################### START VALUE ######################## -->
 
                     <label class="control-label" for="value">Value</label>
                     <div class="controls">
-                        <input type="number" id="value" name="value" placeholder="how much you want for it?" min="1000" max="10000000" step="500" class="input-xlarge" th:field="*{value}">
+                        <input type="number" id="value" name="value" placeholder="how much you want for it?" min="1000"
+                               max="10000000" step="500" class="input-xlarge" th:field="*{value}" required>
                         <p class="help-block">Enter vehicle's cost</p>
                     </div>
                 </div>
@@ -60,7 +62,7 @@
 
                     <label class="control-label" for="locationUser">City Name</label>
                     <div class="controls">
-                        <select th:field="*{location}">
+                        <select th:field="*{location}" required>
                             <option id="locationUser" name="locationUser" th:each="location : ${locations}"
                                     th:value="${location.id}" th:text="${location.name}">data.location.name>
 
@@ -74,19 +76,58 @@
 
                 <div class="control-group">
                     <!-- Password-->
-                    <label class="control-label" for="vehicleModel">Car make</label>
+                    <label class="control-label" for="vehicleMake">Car make</label>
                     <div class="controls">
-                        <select th:field="*{model}">
+                        <select th:field="*{make}">
                             <option id="vehicleMake" name="locationUser" th:each="make : ${makes}"
                                     th:value="${make.id}" th:text="${make.name}">data.location.name>
                             </option>
                         </select>
-                        <select th:field="*{model}">
-                            <option id="vehicleModel" name="locationUser" th:each="make : ${makes}"
-                                    th:value="${make.id}" th:text="${make.name}">data.location.name>
+                        <select th:field="*{model}" required>
+                            <option id="vehicleModel" name="locationUser" th:each="model : ${models}"
+                                    th:value="${model.id}" th:text="${model.name}">data.location.name>
                             </option>
                         </select>
-                        <p class="help-block">Select the car's Manufacturer</p>
+
+                        <p class="help-block">Select the car's Manufacturer and Model</p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Password-->
+                    <label class="control-label" for="vehicleColour">Colour</label>
+
+                        <select th:field="*{colour}" id="vehicleColour" required>
+                            <option th:value="Blue">Blue</option>
+                            <option th:value="Yellow">Yellow</option>
+                            <option th:value="White">White</option>
+                            <option th:value="Black">Black</option>
+                            <option th:value="Green">Green</option>
+                            <option th:value="Red">Red</option>
+                        </select>
+
+
+                    <label class="control-label" for="vehicleHP">HP</label>
+
+
+                    <input th:field="*{hp}" type="number" id="vehicleHP" name="value"
+                               placeholder="Power?" min="50" max="250" step="5" class="input-xlarge" required>
+                    <label class="control-label" for="vehicleFuelType">Colour</label>
+
+                    <select th:field="*{fuelType}" id="vehicleFuelType" required>
+                        <option th:value="D">Diesel</option>
+                        <option th:value="F">Petrol</option>
+                    </select>
+
+                    <label class="control-label" for="kms">Kms</label>
+                    <input id="kms" type="number" name="vehicleLocation" min="0" max="999999" placeholder="0"
+                               value="0" step="5000" th:field="*{kms}" required/>
+
+                    <p class="help-block">Select the car's attributes</p>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="vehicleColour">Colour</label>
+                    <div class="controls">
+
                     </div>
                 </div>
 

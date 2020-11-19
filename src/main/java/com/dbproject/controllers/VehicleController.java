@@ -1,25 +1,30 @@
 package com.dbproject.controllers;
 
+import com.dbproject.entities.Users;
 import com.dbproject.entities.Vehicle;
-import com.dbproject.repositories.LocationRepository;
-import com.dbproject.repositories.MakeRepository;
-import com.dbproject.repositories.ModelRepository;
-import com.dbproject.repositories.VehiclesRepository;
+import com.dbproject.repositories.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.http.HttpRequest;
+import java.security.Principal;
+
 @Controller
 public class VehicleController {
+
+    private final UsersRepository usersRepository;
 
     private final VehiclesRepository vehiclesRepositor;
     private final LocationRepository locationRepository;
     private final ModelRepository modelRepository;
     private final MakeRepository makeRepository;
 
-    public VehicleController(VehiclesRepository vehiclesRepositor, LocationRepository locationRepository, ModelRepository modelRepository, MakeRepository makeRepository) {
+    public VehicleController(UsersRepository usersRepository, VehiclesRepository vehiclesRepositor, LocationRepository locationRepository, ModelRepository modelRepository, MakeRepository makeRepository) {
+        this.usersRepository = usersRepository;
         this.vehiclesRepositor = vehiclesRepositor;
         this.locationRepository = locationRepository;
         this.modelRepository = modelRepository;
@@ -44,11 +49,25 @@ public class VehicleController {
     }
 
     @PostMapping("/saveVehicle")
-    public String saveVehicle(@ModelAttribute("newVehicle") Vehicle vehicle){ //Model attribute bids the form data to the object
+    public String saveVehicle(@ModelAttribute("newVehicle") Vehicle vehicle, HttpServletRequest request){ //Model attribute bids the form data to the object
         //save vehicle to db
+        Users user = retriveUser(request);
+        vehicle.setUser(user);
         vehiclesRepositor.save(vehicle);
 
-        return "/regSuccess";
+        return "/Success";
+
+    }
+
+    public Users retriveUser(HttpServletRequest request) {
+
+        String currentUserName;
+        Users currentUser;
+        Principal principal = request.getUserPrincipal();
+        currentUserName = principal.getName();
+        currentUser = usersRepository.findByUserName(currentUserName);
+
+        return currentUser;
 
     }
 

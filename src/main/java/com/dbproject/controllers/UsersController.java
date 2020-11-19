@@ -3,7 +3,6 @@ package com.dbproject.controllers;
 import com.dbproject.entities.Users;
 import com.dbproject.repositories.LocationRepository;
 import com.dbproject.repositories.UsersRepository;
-import com.dbproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +48,7 @@ public class UsersController {
         //save user to database
         usersRepository.save(user);
 
-        return "/regSuccess";
+        return "Success";
 
     }
 
