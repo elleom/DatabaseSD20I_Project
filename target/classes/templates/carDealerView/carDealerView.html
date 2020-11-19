@@ -35,7 +35,7 @@
         </li>
         <div sec:authorize="hasAuthority('ADMIN')">
             <li style="float:right">
-                <div class="accountBtn menuBtn" id="accountBtn">
+                <div class="accountBtn menuBtn" id="ordersBtn">
                     <a href="/orders">Orders</a>
                 </div>
             </li>
@@ -202,10 +202,18 @@
                                                 <div class="smallHeader">Price:</div>
                                                 <div th:text="${vehicle.value}" class="carInfoInline car-price" id="car-price">2.013.454 kr.</div>
                                             </div>
-                                     
-                                    <div>
-                                        <button class="btn btn-success buyCar">Buy Car</button>
+
+                                    <div class="button-box col-lg-12">
+                                        <!--*/thymeVar id="vehicle" type="com.dbproject.entities.Vehicle"*-->
+                                        <button class="btn btn-success btn-lg">Buy Car</button>
+
+                                        <a style="alignment: right" sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger btn-lg" th:href="@{'/vehicle/delete/' + ${vehicle.id}}">Delete Car</a>
+
                                     </div>
+
+
+
+
 
                                 </div>
                             </div>

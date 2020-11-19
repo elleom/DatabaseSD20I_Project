@@ -15,7 +15,8 @@ public class Vehicle {
     private Long kms;
     private Long hp;
     private Float value;
-    private Integer available;
+
+    private Integer available = 1;
 
     @ManyToOne
     private Location location;
@@ -28,8 +29,6 @@ public class Vehicle {
 
     @ManyToOne
     private Model model;
-
-    //TODO check if this should be a fk, if so can it be null??
 
     private Long orderID;
 

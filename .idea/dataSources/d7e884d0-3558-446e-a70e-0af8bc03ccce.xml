@@ -1582,21 +1582,28 @@ make_ID</ColNames>
       <ColNames>location_id</ColNames>
       <RefTableName>location</RefTableName>
       <RefColNames>ID</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="429" parent="299" name="fk_vehicle_users1">
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="430" parent="299" name="fk_vehicle_model1">
       <ColNames>model_ID</ColNames>
       <RefTableName>model</RefTableName>
       <RefColNames>ID</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="431" parent="299" name="fk_vehicle_make1">
       <ColNames>make_ID</ColNames>
       <RefTableName>make</RefTableName>
       <RefColNames>ID</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <column id="432" parent="300" name="Build Year">
       <Position>1</Position>

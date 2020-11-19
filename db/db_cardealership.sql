@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`vehicle` (
   `Kms` INT NOT NULL,
   `hp` INT NOT NULL,
   `value` FLOAT NOT NULL,
-  `available` TINYINT(1) NULL DEFAULT '1',
+  `available` TINYINT(1) NULL DEFAULT true,
   `location_id` INT NOT NULL,
   `user_id` INT NULL DEFAULT NULL,
   `model_ID` INT NOT NULL,
