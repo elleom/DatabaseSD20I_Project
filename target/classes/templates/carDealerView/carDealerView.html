@@ -99,7 +99,7 @@
                             <a sec:authorize="hasAuthority('USER')" class="addCar" th:href="@{'/newVehicle'}">Add Car</a>
                         </div>
                         <div style="text-align: right;">
-                            <a href="#" class="view-cars">My cars</a>
+                            <a  sec:authorize="hasAuthority('USER')" href="#" class="view-cars">My cars</a>
                         </div>
 
                     </div>
@@ -114,7 +114,7 @@
 
 
                     <div style="position: relative; overflow: hidden;">
-                        <img style="z-index: 1;" class="img-thumbnail listing-thumbs-lg">
+                        <img style="z-index: 1;" class="img-thumbnail listing-thumbs-lg" th:src="@{/images/no-image-available.jpg}" alt="Media result" />">
 
                     </div>
 
@@ -202,6 +202,11 @@
                                                 <div class="smallHeader">Price:</div>
                                                 <div th:text="${vehicle.value}" class="carInfoInline car-price" id="car-price">2.013.454 kr.</div>
                                             </div>
+                                            <div class="car-wrapper">
+                                                <div class="smallHeader">Seller:</div>
+                                                <td><a th:text="${vehicle.user.userName}" th:href="@{'/users/show/' + ${vehicle.user.id}}">data.ID</a></td>
+                                            </div>
+
 
                                     <div class="button-box col-lg-12">
                                         <!--*/thymeVar id="vehicle" type="com.dbproject.entities.Vehicle"*-->
