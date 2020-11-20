@@ -6,30 +6,22 @@ $(document).ready(function () {
     $(".registerBtn").click(function(){
         $(".registerWrapper").addClass("registerActive");
         $(".pageWrapper").addClass("registerActive");
-        $("#login-modal").hide();
       });
       $("#searchCar").click(function () {
         $(".searchWrapper").show();
    
     });
-      $("#loginBtn").click(function () {
-        $("#login-modal").show();
- 
-        $("#account-modal").hide();
-    });
+
       $(".showCarInfo").click(function () {
         $(this).parent().parent().parent().siblings(".col-xs-6").children($("#car-modal")).show();
         $("#account-modal").hide();
-        $("#login-modal").hide();
     });
     $(".closeX").on("click", function (e) {
         e.preventDefault();
-        $("#login-modal").hide();
         $(".sModal").hide();
     });
       $("#accountBtn").click(function () {
         $("#account-modal").show();
-        $("#login-modal").hide();
     });
     $(".closeX-account").on("click", function (e) {
         e.preventDefault();
