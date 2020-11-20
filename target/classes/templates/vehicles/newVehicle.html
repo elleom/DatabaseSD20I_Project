@@ -109,7 +109,7 @@
                     <label class="control-label" for="vehicleHP">HP</label>
 
 
-                    <input th:field="*{hp}" type="number" id="vehicleHP" name="value"
+                    <input th:field="*{hp}" style="color: #2d2d2d" type="number" id="vehicleHP" name="value"
                                placeholder="Power?" min="50" max="250" step="5" class="input-xlarge" required>
                     <label class="control-label" for="vehicleFuelType">Colour</label>
 
@@ -119,7 +119,7 @@
                     </select>
 
                     <label class="control-label" for="kms">Kms</label>
-                    <input id="kms" type="number" name="vehicleLocation" min="0" max="999999" placeholder="0"
+                    <input id="kms" type="number" style="color: #2d2d2d" name="vehicleLocation" min="0" max="999999" placeholder="0"
                                value="0" step="5000" th:field="*{kms}" required/>
 
                     <p class="help-block">Select the car's attributes</p>
