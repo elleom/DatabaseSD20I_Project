@@ -10761,3 +10761,7 @@ span.krSpan {
   margin-left: 0;
   margin-right: 0;
 }
+
+a.listing-heading.darkLink {
+  margin-right: 5px;
+}
