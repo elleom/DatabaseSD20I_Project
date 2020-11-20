@@ -40,7 +40,7 @@
                     <label class="control-label" for="year">Year</label>
                     <div class="controls">
 
-                        <input id="year" type="number" name="vehicleLocation" min="1900" max="2020" placeholder="1900"
+                        <input style="color: #2d2d2d" id="year" type="number" name="vehicleLocation" min="1900" max="2020" placeholder="1900"
                                value="1980" th:field="*{year}"/>
 
                     </div>
@@ -51,7 +51,7 @@
 
                     <label class="control-label" for="value">Value</label>
                     <div class="controls">
-                        <input type="number" id="value" name="value" placeholder="how much you want for it?" min="1000"
+                        <input type="number" style="color: #2d2d2d" id="value" name="value" placeholder="how much you want for it?" min="1000"
                                max="10000000" step="500" class="input-xlarge" th:field="*{value}" required>
                         <p class="help-block">Enter vehicle's cost</p>
                     </div>
