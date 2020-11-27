@@ -10684,8 +10684,9 @@ ul.horizontal li {
 .searchBtnWrapper {
   position: relative;
 }
-.loginBtn {
-  margin-bottom: 10px;
+.logoutBtn {    
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 footer {
   background-color: #696969;
@@ -10760,4 +10761,8 @@ span.krSpan {
 .row.listing {
   margin-left: 0;
   margin-right: 0;
+}
+
+a.listing-heading.darkLink {
+  margin-right: 5px;
 }
