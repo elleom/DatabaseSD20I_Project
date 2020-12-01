@@ -19,14 +19,14 @@ public class VehicleController {
 
     private final UsersRepository usersRepository;
 
-    private final VehiclesRepository vehiclesRepositor;
+    private final VehiclesRepository vehiclesRepository;
     private final LocationRepository locationRepository;
     private final ModelRepository modelRepository;
     private final MakeRepository makeRepository;
 
-    public VehicleController(UsersRepository usersRepository, VehiclesRepository vehiclesRepositor, LocationRepository locationRepository, ModelRepository modelRepository, MakeRepository makeRepository) {
+    public VehicleController(UsersRepository usersRepository, VehiclesRepository vehiclesRepository, LocationRepository locationRepository, ModelRepository modelRepository, MakeRepository makeRepository) {
         this.usersRepository = usersRepository;
-        this.vehiclesRepositor = vehiclesRepositor;
+        this.vehiclesRepository = vehiclesRepository;
         this.locationRepository = locationRepository;
         this.modelRepository = modelRepository;
         this.makeRepository = makeRepository;
@@ -35,7 +35,7 @@ public class VehicleController {
     @RequestMapping({"/vehicles","/vehicles/index.html","/vehicles/index"})
     public String getVehicleList(Model model){
 
-        model.addAttribute("vehicles", vehiclesRepositor.findAll());
+        model.addAttribute("vehicles", vehiclesRepository.findAll());
         return "vehicles/newVehicle";
     }
 
@@ -53,7 +53,7 @@ public class VehicleController {
     public String delVehicle(@PathVariable Long id){
 
         try {
-            vehiclesRepositor.deleteById(id);
+            vehiclesRepository.deleteById(id);
         }
         catch (DataIntegrityViolationException e) {
             return "misc/dataIntegrityMessage";
@@ -67,7 +67,7 @@ public class VehicleController {
         Users user = retriveUser(request);
         vehicle.setUser(user);
         //vehicle.setAvailable(1);
-        vehiclesRepositor.save(vehicle);
+        vehiclesRepository.save(vehicle);
 
         return "misc/Success";
 
