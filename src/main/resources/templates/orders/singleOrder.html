@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Orders List</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-<h1>Users List</h1>
-
 <table>
     <tr>
         <th>ID</th>
@@ -18,15 +16,16 @@
         <th>Make</th>
 
     </tr>
-    <tr th:each="order : ${orders}">
-        <td><a th:text="${order.id}" th:href="@{'/orders/show/' + ${order.id}}">data.ID</a></td>
+    <tr>
+        <td th:text="${order.id}">DATA</td>
         <td th:text="${order.date}"> DATA</td>
         <td th:text="${order.buyer.userName}"> DATA</td>
         <td th:text="${order.seller.userName}">DATA</td>
         <td th:text="${order.vehicle.id}">DATA</td>
+        <img th:src="${order.vehicle.car_image}">
         <td th:text="${order.vehicle.model.name}">DATA</td>
         <td th:text="${order.vehicle.model.make.name}">DATA</td>
     </tr>
-</table>
+
 </body>
 </html>

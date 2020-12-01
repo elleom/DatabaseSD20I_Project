@@ -15,6 +15,7 @@ public class Vehicle {
     private Long kms;
     private Long hp;
     private Float value;
+    private String car_image;
 
     private Integer available = 1;
 
@@ -137,6 +138,14 @@ public class Vehicle {
 
     public void setMake(Make make) {
         this.make = make;
+    }
+
+    public String getCar_image() {
+        return car_image;
+    }
+
+    public void setCar_image(String car_image) {
+        this.car_image = car_image;
     }
 
     @Override

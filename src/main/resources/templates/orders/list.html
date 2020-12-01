@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Spring Framework Guru</title>
+    <title>Orders List</title>
 </head>
 <body>
 <h1>Users List</h1>
@@ -19,7 +19,7 @@
 
     </tr>
     <tr th:each="order : ${orders}">
-        <td th:text="${order.id}">DATA</td>
+        <td><a th:text="${order.id}" th:href="@{'/orders/show/' + ${order.id}}">data.ID</a></td>
         <td th:text="${order.date}"> DATA</td>
         <td th:text="${order.buyer.userName}"> DATA</td>
         <td th:text="${order.seller.userName}">DATA</td>

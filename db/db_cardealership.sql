@@ -142,6 +142,7 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`vehicle` (
   `model_ID` INT NOT NULL,
   `orderID` INT NULL DEFAULT NULL,
   `make_ID` INT NOT NULL,
+  `car_image` VARCHAR(255) NOT NULL DEFAULT '/images/no-image-available.jpg',
   PRIMARY KEY (`ID`, `model_ID`, `make_ID`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE,
   INDEX `fk_vehicle_location1_idx` (`location_id` ASC) VISIBLE,

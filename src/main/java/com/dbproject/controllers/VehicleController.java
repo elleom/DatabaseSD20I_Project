@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.http.HttpRequest;
 import java.security.Principal;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.logging.Logger;
 
 @Controller
 public class VehicleController {
@@ -59,9 +56,9 @@ public class VehicleController {
             vehiclesRepositor.deleteById(id);
         }
         catch (DataIntegrityViolationException e) {
-            return "/dataIntegrityMessage";
+            return "misc/dataIntegrityMessage";
         }
-        return "delCar";
+        return "vehicles/delCar";
     }
 
     @PostMapping("/saveVehicle")
@@ -72,7 +69,7 @@ public class VehicleController {
         //vehicle.setAvailable(1);
         vehiclesRepositor.save(vehicle);
 
-        return "Success";
+        return "misc/Success";
 
     }
 

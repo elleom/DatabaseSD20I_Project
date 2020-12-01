@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>date</th>
+            <th>Buyer</th>
+            <th>Seller</th>
+            <th>Car ID</th>
+            <th>Model</th>
+            <th>Make</th>
+
+        </tr>
+        <tr>
+            <td th:text="${order.id}">DATA</td>
+            <td th:text="${order.date}"> DATA</td>
+            <td th:text="${order.buyer.userName}"> DATA</td>
+            <td th:text="${order.seller.userName}">DATA</td>
+            <td th:text="${order.vehicle.id}">DATA</td>
+            <img th:src="${order.vehicle.car_image}">DATA</img>
+            <td th:text="${order.vehicle.model.name}">DATA</td>
+            <td th:text="${order.vehicle.model.make.name}">DATA</td>
+        </tr>
+</head>
+<body>
+
+</body>
+</html>
