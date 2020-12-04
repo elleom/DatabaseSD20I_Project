@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="car_dealership@localhost">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.19">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.20">
     <root id="1">
       <ServerVersion>8.0.21</ServerVersion>
       <DefaultEngine>MyISAM</DefaultEngine>
@@ -904,14 +904,14 @@
       <Host>localhost</Host>
       <ObjectGrants>SHUTDOWN,SUPER
 BACKUP_ADMIN,CLONE_ADMIN,CONNECTION_ADMIN,PERSIST_RO_VARIABLES_ADMIN,SESSION_VARIABLES_ADMIN,SYSTEM_USER,SYSTEM_VARIABLES_ADMIN
-SELECT|performance_schema:null
-SELECT|mysql.user:null
+SELECT|performance_schema
+SELECT|mysql.user
 </ObjectGrants>
     </user>
     <user id="286" parent="1" name="mysql.sys">
       <Host>localhost</Host>
-      <ObjectGrants>TRIGGER|sys:null
-SELECT|sys.sys_config:null
+      <ObjectGrants>TRIGGER|sys
+SELECT|sys.sys_config
 </ObjectGrants>
     </user>
     <user id="287" parent="1" name="root">
@@ -1031,695 +1031,688 @@ SELECT|sys.sys_config:null
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="316" parent="289" name="payment_type_ID">
-      <Position>6</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="317" parent="289" name="ID_UNIQUE">
+    <index id="316" parent="289" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="318" parent="289" name="generates">
+    <index id="317" parent="289" name="generates">
       <ColNames>order_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="319" parent="289" name="fk_invoice_users1_idx">
+    <index id="318" parent="289" name="fk_invoice_users1_idx">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="320" parent="289" name="fk_invoice_payment_type1_idx">
-      <ColNames>payment_type_ID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="321" parent="289" name="PRIMARY">
+    <key id="319" parent="289" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID
 order_id
-user_id
-payment_type_ID</ColNames>
+user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="322" parent="289" name="ID_UNIQUE">
+    <key id="320" parent="289" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="323" parent="289" name="generates">
+    <foreign-key id="321" parent="289" name="generates">
       <ColNames>order_id</ColNames>
       <RefTableName>orders</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="324" parent="289" name="fk_invoice_users1">
+    <foreign-key id="322" parent="289" name="fk_invoice_users1">
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="325" parent="289" name="fk_invoice_payment_type1">
-      <ColNames>payment_type_ID</ColNames>
-      <RefTableName>payment_type</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
-    <trigger id="326" parent="289" name="makeUnavailable">
-      <SourceTextLength>238</SourceTextLength>
-      <Definer>root@localhost</Definer>
-      <Turn>after-row</Turn>
-      <Events>I</Events>
-    </trigger>
-    <column id="327" parent="290" name="ID">
+    <column id="323" parent="290" name="ID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="328" parent="290" name="postal_code">
+    <column id="324" parent="290" name="postal_code">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="329" parent="290" name="name">
+    <column id="325" parent="290" name="name">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="330" parent="290" name="ID_UNIQUE">
+    <index id="326" parent="290" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="331" parent="290" name="postalCode">
+    <index id="327" parent="290" name="postalCode">
       <ColNames>postal_code</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="332" parent="290" name="PRIMARY">
+    <key id="328" parent="290" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="333" parent="290" name="ID_UNIQUE">
+    <key id="329" parent="290" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="334" parent="290" name="postalCode">
+    <key id="330" parent="290" name="postalCode">
       <ColNames>postal_code</ColNames>
       <UnderlyingIndexName>postalCode</UnderlyingIndexName>
     </key>
-    <column id="335" parent="291" name="ID">
+    <column id="331" parent="291" name="ID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="336" parent="291" name="code">
+    <column id="332" parent="291" name="code">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="337" parent="291" name="name">
+    <column id="333" parent="291" name="name">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="338" parent="291" name="ID_UNIQUE">
+    <index id="334" parent="291" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="339" parent="291" name="name">
+    <index id="335" parent="291" name="name">
       <ColNames>code</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="340" parent="291" name="PRIMARY">
+    <key id="336" parent="291" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="341" parent="291" name="ID_UNIQUE">
+    <key id="337" parent="291" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="342" parent="291" name="name">
+    <key id="338" parent="291" name="name">
       <ColNames>code</ColNames>
       <UnderlyingIndexName>name</UnderlyingIndexName>
     </key>
-    <column id="343" parent="292" name="ID">
+    <column id="339" parent="292" name="ID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="344" parent="292" name="name">
+    <column id="340" parent="292" name="name">
       <Position>2</Position>
       <DataType>varchar(125)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="345" parent="292" name="code">
+    <column id="341" parent="292" name="code">
       <Position>3</Position>
       <DataType>varchar(125)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="346" parent="292" name="make_id">
+    <column id="342" parent="292" name="make_id">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="347" parent="292" name="ID_UNIQUE">
+    <index id="343" parent="292" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="348" parent="292" name="name">
+    <index id="344" parent="292" name="name">
       <ColNames>name</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="349" parent="292" name="build">
+    <index id="345" parent="292" name="build">
       <ColNames>make_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="350" parent="292" name="PRIMARY">
+    <key id="346" parent="292" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID
 make_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="351" parent="292" name="ID_UNIQUE">
+    <key id="347" parent="292" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="352" parent="292" name="build">
+    <foreign-key id="348" parent="292" name="build">
       <ColNames>make_id</ColNames>
       <RefTableName>make</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="353" parent="293" name="ID">
+    <column id="349" parent="293" name="ID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="354" parent="293" name="date">
+    <column id="350" parent="293" name="date">
       <Position>2</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="355" parent="293" name="value">
+    <column id="351" parent="293" name="value">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="356" parent="293" name="buyer_id">
+    <column id="352" parent="293" name="buyer_id">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="357" parent="293" name="seller_id">
+    <column id="353" parent="293" name="seller_id">
       <Position>5</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="358" parent="293" name="vehicle_ID">
+    <column id="354" parent="293" name="vehicle_ID">
       <Position>6</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="359" parent="293" name="ID_UNIQUE">
+    <column id="355" parent="293" name="payment_type_ID">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="356" parent="293" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="360" parent="293" name="fk_orders_users1_idx">
+    <index id="357" parent="293" name="fk_orders_users1_idx">
       <ColNames>buyer_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="361" parent="293" name="fk_orders_users2_idx">
+    <index id="358" parent="293" name="fk_orders_users2_idx">
       <ColNames>seller_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="362" parent="293" name="fk_orders_vehicle1_idx">
+    <index id="359" parent="293" name="fk_orders_vehicle1_idx">
       <ColNames>vehicle_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="363" parent="293" name="PRIMARY">
+    <index id="360" parent="293" name="fk_orders_payment_type1_idx">
+      <ColNames>payment_type_ID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="361" parent="293" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID
 vehicle_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="364" parent="293" name="ID_UNIQUE">
+    <key id="362" parent="293" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="365" parent="293" name="fk_orders_users1">
+    <foreign-key id="363" parent="293" name="fk_orders_users1">
       <ColNames>buyer_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="366" parent="293" name="fk_orders_users2">
+    <foreign-key id="364" parent="293" name="fk_orders_users2">
       <ColNames>seller_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="367" parent="293" name="fk_orders_vehicle1">
+    <foreign-key id="365" parent="293" name="fk_orders_vehicle1">
       <ColNames>vehicle_ID</ColNames>
       <RefTableName>vehicle</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="368" parent="294" name="ID">
+    <foreign-key id="366" parent="293" name="fk_orders_payment_type1">
+      <ColNames>payment_type_ID</ColNames>
+      <RefTableName>payment_type</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="367" parent="294" name="ID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="369" parent="294" name="type">
+    <column id="368" parent="294" name="type">
       <Position>2</Position>
       <DataType>varchar(4)|0s</DataType>
     </column>
-    <index id="370" parent="294" name="ID_UNIQUE">
+    <index id="369" parent="294" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="371" parent="294" name="PRIMARY">
+    <key id="370" parent="294" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="372" parent="294" name="ID_UNIQUE">
+    <key id="371" parent="294" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
-    <column id="373" parent="295" name="id">
+    <column id="372" parent="295" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="374" parent="295" name="name">
+    <column id="373" parent="295" name="name">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="375" parent="295" name="PRIMARY">
+    <key id="374" parent="295" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="376" parent="296" name="ID">
+    <column id="375" parent="296" name="ID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="377" parent="296" name="user_name">
+    <column id="376" parent="296" name="user_name">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="378" parent="296" name="rating">
+    <column id="377" parent="296" name="rating">
       <Position>3</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="379" parent="296" name="password">
+    <column id="378" parent="296" name="password">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="380" parent="296" name="email">
+    <column id="379" parent="296" name="email">
       <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="381" parent="296" name="location_ID">
+    <column id="380" parent="296" name="location_ID">
       <Position>6</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="382" parent="296" name="ID_UNIQUE">
+    <index id="381" parent="296" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="383" parent="296" name="user_name">
+    <index id="382" parent="296" name="user_name">
       <ColNames>user_name</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="384" parent="296" name="fk_users_location1_idx">
+    <index id="383" parent="296" name="fk_users_location1_idx">
       <ColNames>location_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="385" parent="296" name="PRIMARY">
+    <key id="384" parent="296" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="386" parent="296" name="ID_UNIQUE">
+    <key id="385" parent="296" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="387" parent="296" name="user_name">
+    <key id="386" parent="296" name="user_name">
       <ColNames>user_name</ColNames>
       <UnderlyingIndexName>user_name</UnderlyingIndexName>
     </key>
-    <foreign-key id="388" parent="296" name="lives">
+    <foreign-key id="387" parent="296" name="lives">
       <ColNames>location_ID</ColNames>
       <RefTableName>location</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="389" parent="297" name="UsersID">
+    <column id="388" parent="297" name="UsersID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="390" parent="297" name="ordersID">
+    <column id="389" parent="297" name="ordersID">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="391" parent="297" name="FKUsers_orde271643">
+    <index id="390" parent="297" name="FKUsers_orde271643">
       <ColNames>ordersID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="392" parent="297" name="PRIMARY">
+    <key id="391" parent="297" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>UsersID
 ordersID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="393" parent="297" name="orders">
+    <foreign-key id="392" parent="297" name="orders">
       <ColNames>UsersID</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="394" parent="297" name="FKUsers_orde271643">
+    <foreign-key id="393" parent="297" name="FKUsers_orde271643">
       <ColNames>ordersID</ColNames>
       <RefTableName>orders</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="395" parent="298" name="users_ID">
+    <column id="394" parent="298" name="users_ID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="396" parent="298" name="roles_id">
+    <column id="395" parent="298" name="roles_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="397" parent="298" name="fk_users_has_roles_users1_idx">
+    <index id="396" parent="298" name="fk_users_has_roles_users1_idx">
       <ColNames>users_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="398" parent="298" name="fk_users_has_roles_roles1_idx">
+    <index id="397" parent="298" name="fk_users_has_roles_roles1_idx">
       <ColNames>roles_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="399" parent="298" name="PRIMARY">
+    <key id="398" parent="298" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>users_ID
 roles_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="400" parent="298" name="fk_users_has_roles_users1">
+    <foreign-key id="399" parent="298" name="fk_users_has_roles_users1">
       <ColNames>users_ID</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="401" parent="298" name="fk_users_has_roles_roles1">
+    <foreign-key id="400" parent="298" name="fk_users_has_roles_roles1">
       <ColNames>roles_id</ColNames>
       <RefTableName>roles</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="402" parent="299" name="usersID">
+    <column id="401" parent="299" name="usersID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="403" parent="299" name="usersID2">
+    <column id="402" parent="299" name="usersID2">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="404" parent="299" name="FKusers_user471886">
+    <index id="403" parent="299" name="FKusers_user471886">
       <ColNames>usersID2</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="405" parent="299" name="PRIMARY">
+    <key id="404" parent="299" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>usersID
 usersID2</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="406" parent="299" name="rates">
+    <foreign-key id="405" parent="299" name="rates">
       <ColNames>usersID</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="407" parent="299" name="FKusers_user471886">
+    <foreign-key id="406" parent="299" name="FKusers_user471886">
       <ColNames>usersID2</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="408" parent="300" name="ID">
+    <column id="407" parent="300" name="ID">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="409" parent="300" name="year">
+    <column id="408" parent="300" name="year">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="410" parent="300" name="colour">
+    <column id="409" parent="300" name="colour">
       <Position>3</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="411" parent="300" name="fuel_type">
+    <column id="410" parent="300" name="fuel_type">
       <Position>4</Position>
       <DataType>varchar(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="412" parent="300" name="Kms">
+    <column id="411" parent="300" name="Kms">
       <Position>5</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="413" parent="300" name="hp">
+    <column id="412" parent="300" name="hp">
       <Position>6</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="414" parent="300" name="value">
+    <column id="413" parent="300" name="value">
       <Position>7</Position>
-      <DataType>float|0s</DataType>
+      <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="415" parent="300" name="available">
+    <column id="414" parent="300" name="available">
       <Position>8</Position>
       <DataType>tinyint(1)|0s</DataType>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <column id="416" parent="300" name="location_id">
+    <column id="415" parent="300" name="location_id">
       <Position>9</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="417" parent="300" name="user_id">
+    <column id="416" parent="300" name="user_id">
       <Position>10</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="418" parent="300" name="model_ID">
+    <column id="417" parent="300" name="model_ID">
       <Position>11</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="419" parent="300" name="orderID">
+    <column id="418" parent="300" name="orderID">
       <Position>12</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="420" parent="300" name="make_ID">
+    <column id="419" parent="300" name="make_ID">
       <Position>13</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="421" parent="300" name="car_image">
+    <column id="420" parent="300" name="car_image">
       <Position>14</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;/images/no-image-available.jpg&apos;</DefaultExpression>
     </column>
-    <index id="422" parent="300" name="ID_UNIQUE">
+    <index id="421" parent="300" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="423" parent="300" name="fk_vehicle_location1_idx">
+    <index id="422" parent="300" name="fk_vehicle_location1_idx">
       <ColNames>location_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="424" parent="300" name="fk_vehicle_users1_idx">
+    <index id="423" parent="300" name="fk_vehicle_users1_idx">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="425" parent="300" name="fk_vehicle_model1_idx">
+    <index id="424" parent="300" name="fk_vehicle_model1_idx">
       <ColNames>model_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="426" parent="300" name="fk_vehicle_orders1_idx">
+    <index id="425" parent="300" name="fk_vehicle_orders1_idx">
       <ColNames>orderID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="427" parent="300" name="fk_vehicle_make1_idx">
+    <index id="426" parent="300" name="fk_vehicle_make1_idx">
       <ColNames>make_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="428" parent="300" name="PRIMARY">
+    <key id="427" parent="300" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID
 model_ID
 make_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="429" parent="300" name="ID_UNIQUE">
+    <key id="428" parent="300" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="430" parent="300" name="fk_vehicle_location1">
+    <foreign-key id="429" parent="300" name="fk_vehicle_location1">
       <ColNames>location_id</ColNames>
       <RefTableName>location</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="431" parent="300" name="fk_vehicle_users1">
+    <foreign-key id="430" parent="300" name="fk_vehicle_users1">
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="432" parent="300" name="fk_vehicle_model1">
+    <foreign-key id="431" parent="300" name="fk_vehicle_model1">
       <ColNames>model_ID</ColNames>
       <RefTableName>model</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="433" parent="300" name="fk_vehicle_make1">
+    <foreign-key id="432" parent="300" name="fk_vehicle_make1">
       <ColNames>make_ID</ColNames>
       <RefTableName>make</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="434" parent="301" name="Build Year">
+    <column id="433" parent="301" name="Build Year">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="435" parent="301" name="Kms">
+    <column id="434" parent="301" name="Kms">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="436" parent="301" name="DKK">
+    <column id="435" parent="301" name="DKK">
       <Position>3</Position>
-      <DataType>float|0s</DataType>
+      <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="437" parent="301" name="available">
+    <column id="436" parent="301" name="available">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="438" parent="301" name="colour">
+    <column id="437" parent="301" name="colour">
       <Position>5</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="439" parent="301" name="Make">
+    <column id="438" parent="301" name="Make">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="440" parent="301" name="Model">
+    <column id="439" parent="301" name="Model">
       <Position>7</Position>
       <DataType>varchar(125)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="441" parent="301" name="Seller">
+    <column id="440" parent="301" name="Seller">
       <Position>8</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="442" parent="302" name="Build Year">
+    <column id="441" parent="302" name="Build Year">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="443" parent="302" name="Kms">
+    <column id="442" parent="302" name="Kms">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="444" parent="302" name="DKK">
+    <column id="443" parent="302" name="DKK">
       <Position>3</Position>
-      <DataType>float|0s</DataType>
+      <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="445" parent="302" name="available">
+    <column id="444" parent="302" name="available">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="446" parent="302" name="colour">
+    <column id="445" parent="302" name="colour">
       <Position>5</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="447" parent="302" name="Make">
+    <column id="446" parent="302" name="Make">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="448" parent="302" name="Model">
+    <column id="447" parent="302" name="Model">
       <Position>7</Position>
       <DataType>varchar(125)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="449" parent="302" name="Seller">
+    <column id="448" parent="302" name="Seller">
       <Position>8</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="450" parent="303" name="Build Year">
+    <column id="449" parent="303" name="Build Year">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="451" parent="303" name="Kms">
+    <column id="450" parent="303" name="Kms">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="452" parent="303" name="DKK">
+    <column id="451" parent="303" name="DKK">
       <Position>3</Position>
-      <DataType>float|0s</DataType>
+      <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="453" parent="303" name="available">
+    <column id="452" parent="303" name="available">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="454" parent="303" name="colour">
+    <column id="453" parent="303" name="colour">
       <Position>5</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="455" parent="303" name="Make">
+    <column id="454" parent="303" name="Make">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="456" parent="303" name="Model">
+    <column id="455" parent="303" name="Model">
       <Position>7</Position>
       <DataType>varchar(125)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="457" parent="303" name="Seller">
+    <column id="456" parent="303" name="Seller">
       <Position>8</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>

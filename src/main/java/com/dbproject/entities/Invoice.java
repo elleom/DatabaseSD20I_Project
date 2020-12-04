@@ -22,10 +22,6 @@ public class Invoice {
     @JoinColumn(name = "user_ID", referencedColumnName = "id")
     private Users user;
 
-    @OneToOne
-    @JoinColumn(name = "payment_type_ID", referencedColumnName = "ID")
-    private PaymentType paymentType;
-
     public Long getID() {
         return ID;
     }
@@ -66,14 +62,6 @@ public class Invoice {
         this.user = user;
     }
 
-    public PaymentType getPaymentType() {
-        return paymentType;
-    }
-
-    public void setPaymentType(PaymentType paymentType) {
-        this.paymentType = paymentType;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,8 +73,7 @@ public class Invoice {
         if (date != null ? !date.equals(invoice.date) : invoice.date != null) return false;
         if (amount != null ? !amount.equals(invoice.amount) : invoice.amount != null) return false;
         if (order != null ? !order.equals(invoice.order) : invoice.order != null) return false;
-        if (user != null ? !user.equals(invoice.user) : invoice.user != null) return false;
-        return paymentType != null ? paymentType.equals(invoice.paymentType) : invoice.paymentType == null;
+        return user != null ? user.equals(invoice.user) : invoice.user == null;
     }
 
     @Override
@@ -96,7 +83,6 @@ public class Invoice {
         result = 31 * result + (amount != null ? amount.hashCode() : 0);
         result = 31 * result + (order != null ? order.hashCode() : 0);
         result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (paymentType != null ? paymentType.hashCode() : 0);
         return result;
     }
 }

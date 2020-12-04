@@ -2,6 +2,7 @@ package com.dbproject.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 
 @Entity
@@ -22,6 +23,10 @@ public class Order {
 
     @OneToOne
     private Vehicle vehicle;
+
+    @OneToOne
+    @JoinColumn(name = "payment_type_ID", referencedColumnName = "ID")
+    private PaymentType paymentType;
 
     public Order(Long id, Date date, Long value, Users buyer, Users seller, Vehicle vehicle) {
         this.id = id;
@@ -84,7 +89,15 @@ public class Order {
         this.vehicle = vehicle;
     }
 
-    //TODO create lombok annotation
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
+    }
+//TODO create lombok annotation
+
 
     @Override
     public boolean equals(Object o) {
@@ -98,7 +111,8 @@ public class Order {
         if (value != null ? !value.equals(order.value) : order.value != null) return false;
         if (buyer != null ? !buyer.equals(order.buyer) : order.buyer != null) return false;
         if (seller != null ? !seller.equals(order.seller) : order.seller != null) return false;
-        return vehicle != null ? vehicle.equals(order.vehicle) : order.vehicle == null;
+        if (vehicle != null ? !vehicle.equals(order.vehicle) : order.vehicle != null) return false;
+        return paymentType != null ? paymentType.equals(order.paymentType) : order.paymentType == null;
     }
 
     @Override
@@ -109,6 +123,7 @@ public class Order {
         result = 31 * result + (buyer != null ? buyer.hashCode() : 0);
         result = 31 * result + (seller != null ? seller.hashCode() : 0);
         result = 31 * result + (vehicle != null ? vehicle.hashCode() : 0);
+        result = 31 * result + (paymentType != null ? paymentType.hashCode() : 0);
         return result;
     }
 }

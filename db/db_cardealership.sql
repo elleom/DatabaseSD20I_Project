@@ -345,6 +345,8 @@ USE `car_dealership`;
 CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `car_dealership`.`carsnotavailable` AS select `carslisted`.`Build Year` AS `Build Year`,`carslisted`.`Kms` AS `Kms`,`carslisted`.`DKK` AS `DKK`,`carslisted`.`available` AS `available`,`carslisted`.`colour` AS `colour`,`carslisted`.`Make` AS `Make`,`carslisted`.`Model` AS `Model`,`carslisted`.`Seller` AS `Seller` from `car_dealership`.`carslisted` where (`carslisted`.`available` = 1);
 USE `car_dealership`;
 
+alter table vehicle modify value int not null;
+
 DELIMITER $$
 USE `car_dealership`$$
 

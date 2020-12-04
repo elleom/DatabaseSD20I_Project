@@ -40,7 +40,7 @@ public class UsersController {
         model.addAttribute("user", user);
         model.addAttribute("locations", locationRepository.findAll());
 
-        return "/register";
+        return "users/register";
     }
 
     @PostMapping("/saveUser")
@@ -48,7 +48,7 @@ public class UsersController {
         //save user to database
         usersRepository.save(user);
 
-        return "Success";
+        return "misc/Success";
 
     }
 
