@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>$Title$</title>
 </head>
 <body>
-$END$
+<div>
+  <form th:object="${newOrder}" action="#" th:action="@{'/saveOrder/'+ ${vehicle.id}}" method="POST">
+  <div class="container">
+    <label>Payment Type</label>
+    <select name="paymentType" th:field="*{paymentType}">
+    <option th:each="payment : ${payments}" th:value="${payment.id}" th:text="${payment.type}">
+    </option>
+  </select>
+  </div>
+    <div class="container">
+    <p th:text="'Vehicle ID: '+ ${vehicle.id}"> </p>
+    <p th:text="'Vehicle Seller: '+ ${vehicle.user.userName}"></p>
+    <p th:text="'Vehicle Value: '+${vehicle.value}" ></p>
+    <button th:type="submit">Confirm!</button>
+    </div>
+  </form>
+</div>
+
 </body>
 </html>

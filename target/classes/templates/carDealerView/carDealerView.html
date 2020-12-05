@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <!-- From the LinkedIn Learning course "jQuery Essential Training" -->
 
 <head>
     <title>Car Dealership</title>
-    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}">
     <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery-3.5.1.js}"></script>
@@ -45,191 +45,210 @@
 
 <body>
 
-    <div class="pageWrapper">
+<div class="pageWrapper">
 
-        <div class="sModal modal-login" id="login-modal" style="display: none;">
-            <div class="modalStart">
-                <div class="loginmodal-container">
-                    <button class="closeX">x</button>
-                    <h1>Login to Your Account</h1><br>
-                    <form>
-                        <input type="text" name="user" placeholder="Username">
-                        <input type="password" name="pass" placeholder="Password">
-                        <input type="submit" name="login" class="login loginmodal-submit" value="Login">
-                    </form>
+    <div class="sModal modal-login" id="login-modal" style="display: none;">
+        <div class="modalStart">
+            <div class="loginmodal-container">
+                <button class="closeX">x</button>
+                <h1>Login to Your Account</h1><br>
+                <form>
+                    <input type="text" name="user" placeholder="Username">
+                    <input type="password" name="pass" placeholder="Password">
+                    <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                </form>
 
-                    <div class="login-help">
-                        <a class="registerBtn" th:href="@{/register}">Register</a> - <a href="#">Forgot Password</a>
-                    </div>
+                <div class="login-help">
+                    <a class="registerBtn" th:href="@{/register}">Register</a> - <a href="#">Forgot Password</a>
                 </div>
             </div>
         </div>
-        <div class="sModal modal-account" id="account-modal" style="display: none;">
-            <div class="modalStart">
-                <div class="accountModal-container">
-                    <button class="closeX-account">x</button>
-                    <h5 class="accountHeader">Your Account</h5>
-                    <div class="accountInfo-wrapper">
+    </div>
+    <div class="sModal modal-account" id="account-modal" style="display: none;">
+        <div class="modalStart">
+            <div class="accountModal-container">
+                <button class="closeX-account">x</button>
+                <h5 class="accountHeader">Your Account</h5>
+                <div class="accountInfo-wrapper">
 
-                        <!-- ################AUTHENTICATED USER PANEL ############ -->
-                        <div class="account-wrapper">
-                            <div class="smallHeader">User name:</div>
-                            <div class="userName" id="user-name">
-                                <strong>
-                                    <div sec:authentication="name"></div> <!-- displays auth users name -->
-                                </strong>
-                            </div>
+                    <!-- ################AUTHENTICATED USER PANEL ############ -->
+                    <div class="account-wrapper">
+                        <div class="smallHeader">User name:</div>
+                        <div class="userName" id="user-name">
+                            <strong>
+                                <div sec:authentication="name"></div> <!-- displays auth users name -->
+                            </strong>
                         </div>
-
-                        <div class="account-wrapper">
-                            <div class="smallHeader">Location:</div>
-                            <div class="location" id="user-location">
-                                <strong>
-                                    <div>
-                                        <p th:text="${currentUser.location.name}">USER.LOCATION</p>
-                                    </div> <!-- displays auth users location -->
-                                </strong>
-                            </div>
-                        </div>
-                        <div class="password-wrapper">
-                            <div class="changePassword">Change your password</div>
-                            <input type="password" name="pass" placeholder="********">
-                        </div>
-                        <div>
-                            <a sec:authorize="hasAuthority('USER')" class="addCar" th:href="@{'/newVehicle'}">Add Car</a>
-                        </div>
-                        <div style="text-align: right;">
-                            <a  sec:authorize="hasAuthority('USER')" href="#" class="view-cars">My cars</a>
-                        </div>
-
                     </div>
+
+                    <div class="account-wrapper">
+                        <div class="smallHeader">Location:</div>
+                        <div class="location" id="user-location">
+                            <strong>
+                                <div>
+                                    <p th:text="${currentUser.location.name}">USER.LOCATION</p>
+                                </div> <!-- displays auth users location -->
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="password-wrapper">
+                        <div class="changePassword">Change your password</div>
+                        <input type="password" name="pass" placeholder="********">
+                    </div>
+                    <div>
+                        <a sec:authorize="hasAuthority('USER')" class="addCar" th:href="@{'/newVehicle'}">Add Car</a>
+                    </div>
+                    <div style="text-align: right;">
+                        <a sec:authorize="hasAuthority('USER')" href="#" class="view-cars">My cars</a>
+                    </div>
+
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <div class="searchWrapper">
-            <div th:each="vehicle : ${vehicles}" class="row listing">
-                <div class="col-xs-2">
+    <div class="searchWrapper">
+        <div th:each="vehicle : ${vehicles}" class="row listing">
+            <div class="col-xs-2">
 
 
-                    <div style="position: relative; overflow: hidden;">
-                        <img style="z-index: 1;" class="img-thumbnail listing-thumbs-lg" th:src="@{/images/no-image-available.jpg}" alt="Media result"/>
+                <div style="position: relative; overflow: hidden;">
+                    <img style="z-index: 1;" class="img-thumbnail listing-thumbs-lg"
+                         th:src="@{/images/no-image-available.jpg}" alt="Media result"/>
 
+                </div>
+
+            </div>
+            <div class="col-xs-4">
+
+                <div class="row">
+                    <a th:text="${vehicle.model.make.name}" class="listing-heading darkLink">DATA.MODEL.NAME</a>
+                    <a th:text="${vehicle.model.name}" class="listing-heading darkLink">DATA.MODEL.NAME</a>
+                </div>
+                <div class="row">
+
+                    <div class="revealLink clearfix"
+                         style="background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 30%);">
+                        <div class="btn linkText showCarInfo" style="background-color: rgb(255, 255, 255);">...More
+                            info
+                        </div>
+                        <div class="arrow"></div>
                     </div>
 
                 </div>
-                <div class="col-xs-4">
-
-                    <div class="row">
-                        <a th:text="${vehicle.model.make.name}" class="listing-heading darkLink">DATA.MODEL.NAME</a>
-                        <a th:text="${vehicle.model.name}" class="listing-heading darkLink">DATA.MODEL.NAME</a>
+            </div>
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-4 listing-heading">
+                        <p>Km's done</p>
                     </div>
-                    <div class="row">
-
-                        <div class="revealLink clearfix"
-                            style="background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 30%);">
-                            <div class="btn linkText showCarInfo" style="background-color: rgb(255, 255, 255);">...More
-                                info
-                            </div>
-                            <div class="arrow"></div>
-                        </div>
-
+                    <div class="col-xs-2 listing-heading local">
+                        <p>Location</p>
+                    </div>
+                    <div class="col-xs-2 listing-heading listing-price searchPrice" id="price">
+                        <p>Price</p>
                     </div>
                 </div>
-                <div class="col-xs-6">
-                    <div class="row">
-                        <div class="col-xs-4 listing-heading">
-                            <p>Km's done</p>
-                        </div>
-                        <div class="col-xs-2 listing-heading local">
-                            <p>Location</p>
-                        </div>
-                        <div class="col-xs-2 listing-heading listing-price searchPrice" id="price">
-                            <p>Price</p>
-                        </div>
+                <div class="row">
+                    <div class="col-xs-4 listing-data listing-text" id="kmsDone">
+                        <p th:text="${vehicle.kms}"> kmsDone</p><span class="krSpan">km</span>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-4 listing-data listing-text" id="kmsDone">
-                            <p th:text="${vehicle.kms}"> kmsDone</p><span class="krSpan">km</span>
-                        </div>
-                        <div class="col-xs-2 listing-region listing-text" id="location">
-                            <p th:text="${vehicle.location.name}">Location</p>
-                        </div>
-                        <div class="col-xs-2 listing-price searchPrice" id="priceDiv">
-                            <p th:text="${vehicle.value}">Price</p><span class="krSpan">kr.</span>
-                        </div>
+                    <div class="col-xs-2 listing-region listing-text" id="location">
+                        <p th:text="${vehicle.location.name}">Location</p>
                     </div>
+                    <div class="col-xs-2 listing-price searchPrice" id="priceDiv">
+                        <p th:text="${vehicle.value}">Price</p><span class="krSpan">kr.</span>
+                    </div>
+                </div>
 
-                    <div class="sModal modal-cars" id="car-modal" style="display: none;">
-                        <div class="modalStart">
-                            <div class="carModal-container">
-                                <button class="closeX">x</button>
-                                <div class="carInfo-wrapper">
-                                    <div class="car-wrapper">
-                                        <div class="smallHeader">Car Information</div>
-                                        <div class="carParagraph" id="car-info">
+                <div class="sModal modal-cars" id="car-modal" style="display: none;">
+                    <div class="modalStart">
+                        <div class="carModal-container">
+                            <button class="closeX">x</button>
+                            <div class="carInfo-wrapper">
+                                <div class="car-wrapper">
+                                    <div class="smallHeader">Car Information</div>
+                                    <div class="carParagraph" id="car-info">
 
-                                            <!-- TODO check this shit out -->
-                                            <!-- <ul th:each="user : ${users}"></ul>
-                                            <li th:text="${users.ID}">data.name</li> -->
+                                        <!-- TODO check this shit out -->
+                                        <!-- <ul th:each="user : ${users}"></ul>
+                                        <li th:text="${users.ID}">data.name</li> -->
 
-                                            <div class="car-wrapper">
-                                                <div class="smallHeader carInfoInline" th:text="${vehicle.model.make.name}"></div>
-                                                <div class="carInfoInline" th:text="${vehicle.model.name}">vehicle.model.name</div>
+                                        <div class="car-wrapper">
+                                            <div class="smallHeader carInfoInline"
+                                                 th:text="${vehicle.model.make.name}"></div>
+                                            <div class="carInfoInline" th:text="${vehicle.model.name}">
+                                                vehicle.model.name
                                             </div>
-                                            <div class="car-wrapper">
-                                                <div class="smallHeader">Year Made:</div>
-                                                <div th:text="${vehicle.year}" class="carInfoInline car-location" id="car-year">1999</div>
+                                        </div>
+                                        <div class="car-wrapper">
+                                            <div class="smallHeader">Year Made:</div>
+                                            <div th:text="${vehicle.year}" class="carInfoInline car-location"
+                                                 id="car-year">1999
                                             </div>
-                                            <div class="car-wrapper">
-                                                <div class="smallHeader">Location:</div>
-                                                <div th:text="${vehicle.location.name}" class="carInfoInline car-location" id="car-location">Valby</div>
+                                        </div>
+                                        <div class="car-wrapper">
+                                            <div class="smallHeader">Location:</div>
+                                            <div th:text="${vehicle.location.name}" class="carInfoInline car-location"
+                                                 id="car-location">Valby
                                             </div>
-                                            <div class="car-wrapper">
-                                                <div class="smallHeader">Colour:</div>
-                                                <div th:text="${vehicle.colour}" class="carInfoInline car-colour" id="car-colour">Black</div>
+                                        </div>
+                                        <div class="car-wrapper">
+                                            <div class="smallHeader">Colour:</div>
+                                            <div th:text="${vehicle.colour}" class="carInfoInline car-colour"
+                                                 id="car-colour">Black
                                             </div>
-                                            <div class="car-wrapper">
-                                                <div class="smallHeader">Kilometers done:</div>
-                                                <div th:text="${vehicle.kms}" class="carInfoInline car-kms" id="car-kms">2.000</div>
+                                        </div>
+                                        <div class="car-wrapper">
+                                            <div class="smallHeader">Kilometers done:</div>
+                                            <div th:text="${vehicle.kms}" class="carInfoInline car-kms" id="car-kms">
+                                                2.000
                                             </div>
-                                            <div class="car-wrapper">
-                                                <div class="smallHeader">Horsepower:</div>
-                                                <div th:text="${vehicle.hp}" class="carInfoInline car-hp" id="car-hp">750Hp/800NM</div>
+                                        </div>
+                                        <div class="car-wrapper">
+                                            <div class="smallHeader">Horsepower:</div>
+                                            <div th:text="${vehicle.hp}" class="carInfoInline car-hp" id="car-hp">
+                                                750Hp/800NM
                                             </div>
-                                            <div class="car-wrapper">
-                                                <div class="smallHeader">Price:</div>
-                                                <div th:text="${vehicle.value}" class="carInfoInline car-price" id="car-price">2.013.454 kr.</div>
+                                        </div>
+                                        <div class="car-wrapper">
+                                            <div class="smallHeader">Price:</div>
+                                            <div th:text="${vehicle.value}" class="carInfoInline car-price"
+                                                 id="car-price">2.013.454 kr.
                                             </div>
-                                            <div class="car-wrapper">
-                                                <div class="smallHeader">Seller:</div>
-                                                <td><a th:text="${vehicle.user.userName}" th:href="@{'/users/show/' + ${vehicle.user.id}}">data.ID</a></td>
-                                            </div>
+                                        </div>
+                                        <div class="car-wrapper">
+                                            <div class="smallHeader">Seller:</div>
+                                            <td><a th:text="${vehicle.user.userName}"
+                                                   th:href="@{'/users/show/' + ${vehicle.user.id}}">data.ID</a></td>
+                                        </div>
 
 
-                                    <div class="button-box col-lg-12">
-                                        <!--*/thymeVar id="vehicle" type="com.dbproject.entities.Vehicle"*-->
-                                        <button sec:authorize="hasAuthority('USER')" class="btn btn-success btn-lg">Buy Car</button>
+                                        <div class="button-box col-lg-12">
+                                            <!--*/thymeVar id="vehicle" type="com.dbproject.entities.Vehicle"*-->
+                                            <a th:href="@{'/vehicle/order/' + ${vehicle.id}}" sec:authorize="hasAuthority('USER')" class="btn btn-success btn-lg">
+                                                Buy Car
+                                            </a>
 
-                                        <a style="alignment: right" sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger btn-lg" th:href="@{'/vehicle/delete/' + ${vehicle.id}}">Delete Car</a>
+                                            <a style="alignment: right" sec:authorize="hasAuthority('ADMIN')"
+                                               class="btn btn-danger btn-lg"
+                                               th:href="@{'/vehicle/delete/' + ${vehicle.id}}">Delete Car</a>
+
+                                        </div>
+
 
                                     </div>
-
-
-
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-
             </div>
-
         </div>
     </div>
+</div>
 </body>
 <footer>
     @DatabaseProject CarDealerShip

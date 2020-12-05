@@ -1,6 +1,7 @@
 package com.dbproject.controllers;
 
 import com.dbproject.entities.Users;
+
 import com.dbproject.repositories.UsersRepository;
 import com.dbproject.repositories.VehiclesRepository;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,13 @@ public class IndexController {
 
         this.vehiclesRepository = vehiclesRepository;
         this.usersRepository = usersRepository;
+
     }
 
     @RequestMapping({"", "/", "index"})
     public String getIndex(Model model, HttpServletRequest request){
+
+
         Principal principal = request.getUserPrincipal();
         currentUserName = principal.getName();
         currentUser = usersRepository.findByUserName(currentUserName);

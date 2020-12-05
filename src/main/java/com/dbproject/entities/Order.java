@@ -3,6 +3,7 @@ package com.dbproject.entities;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 
 @Entity
@@ -96,6 +97,7 @@ public class Order {
     public void setPaymentType(PaymentType paymentType) {
         this.paymentType = paymentType;
     }
+
 //TODO create lombok annotation
 
 
@@ -126,4 +128,6 @@ public class Order {
         result = 31 * result + (paymentType != null ? paymentType.hashCode() : 0);
         return result;
     }
+
+
 }

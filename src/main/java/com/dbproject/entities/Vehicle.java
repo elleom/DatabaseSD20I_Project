@@ -14,7 +14,7 @@ public class Vehicle {
     private String fuelType;
     private Long kms;
     private Long hp;
-    private Float value;
+    private Long value;
     private String car_image;
 
     private Integer available = 1;
@@ -84,11 +84,11 @@ public class Vehicle {
         this.hp = hp;
     }
 
-    public Float getValue() {
+    public Long getValue() {
         return value;
     }
 
-    public void setValue(Float value) {
+    public void setValue(Long value) {
         this.value = value;
     }
 
