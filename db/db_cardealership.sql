@@ -33,19 +33,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `car_dealership`.`payment_type`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `car_dealership`.`payment_type` (
-  `ID` INT NOT NULL,
-  `type` VARCHAR(4) NULL DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `car_dealership`.`location`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `car_dealership`.`location` (
@@ -81,7 +68,20 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`users` (
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB
-AUTO_INCREMENT = 32
+AUTO_INCREMENT = 33
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `car_dealership`.`payment_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `car_dealership`.`payment_type` (
+  `ID` INT NOT NULL,
+  `type` VARCHAR(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE)
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -135,8 +135,8 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`vehicle` (
   `fuel_type` VARCHAR(1) NOT NULL,
   `Kms` INT NOT NULL,
   `hp` INT NOT NULL,
-  `value` FLOAT NOT NULL,
-  `available` TINYINT(1) NULL DEFAULT true,
+  `value` INT NOT NULL,
+  `available` TINYINT(1) NULL DEFAULT '1',
   `location_id` INT NOT NULL,
   `user_id` INT NULL DEFAULT NULL,
   `model_ID` INT NOT NULL,
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`vehicle` (
     FOREIGN KEY (`user_id`)
     REFERENCES `car_dealership`.`users` (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 31
+AUTO_INCREMENT = 33
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -178,11 +178,16 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`orders` (
   `buyer_id` INT NOT NULL,
   `seller_id` INT NOT NULL,
   `vehicle_ID` INT NOT NULL,
+  `payment_type_ID` INT NOT NULL,
   PRIMARY KEY (`ID`, `vehicle_ID`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE,
   INDEX `fk_orders_users1_idx` (`buyer_id` ASC) VISIBLE,
   INDEX `fk_orders_users2_idx` (`seller_id` ASC) VISIBLE,
   INDEX `fk_orders_vehicle1_idx` (`vehicle_ID` ASC) VISIBLE,
+  INDEX `fk_orders_payment_type1_idx` (`payment_type_ID` ASC) VISIBLE,
+  CONSTRAINT `fk_orders_payment_type1`
+    FOREIGN KEY (`payment_type_ID`)
+    REFERENCES `car_dealership`.`payment_type` (`ID`),
   CONSTRAINT `fk_orders_users1`
     FOREIGN KEY (`buyer_id`)
     REFERENCES `car_dealership`.`users` (`ID`),
@@ -193,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`orders` (
     FOREIGN KEY (`vehicle_ID`)
     REFERENCES `car_dealership`.`vehicle` (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -207,15 +212,10 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`invoice` (
   `amount` INT NOT NULL,
   `order_id` INT NOT NULL,
   `user_id` INT NOT NULL,
-  `payment_type_ID` INT NOT NULL,
-  PRIMARY KEY (`ID`, `order_id`, `user_id`, `payment_type_ID`),
+  PRIMARY KEY (`ID`, `order_id`, `user_id`),
   UNIQUE INDEX `ID_UNIQUE` (`ID` ASC) VISIBLE,
   INDEX `generates` (`order_id` ASC) VISIBLE,
   INDEX `fk_invoice_users1_idx` (`user_id` ASC) VISIBLE,
-  INDEX `fk_invoice_payment_type1_idx` (`payment_type_ID` ASC) VISIBLE,
-  CONSTRAINT `fk_invoice_payment_type1`
-    FOREIGN KEY (`payment_type_ID`)
-    REFERENCES `car_dealership`.`payment_type` (`ID`),
   CONSTRAINT `fk_invoice_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `car_dealership`.`users` (`ID`),
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`invoice` (
     FOREIGN KEY (`order_id`)
     REFERENCES `car_dealership`.`orders` (`ID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -265,6 +265,26 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `car_dealership`.`users_roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `car_dealership`.`users_roles` (
+  `users_ID` INT NOT NULL,
+  `roles_id` INT NOT NULL,
+  PRIMARY KEY (`users_ID`, `roles_id`),
+  INDEX `fk_users_has_roles_roles1_idx` (`roles_id` ASC) VISIBLE,
+  INDEX `fk_users_has_roles_users1_idx` (`users_ID` ASC) VISIBLE,
+  CONSTRAINT `fk_users_has_roles_roles1`
+    FOREIGN KEY (`roles_id`)
+    REFERENCES `car_dealership`.`roles` (`id`),
+  CONSTRAINT `fk_users_has_roles_users1`
+    FOREIGN KEY (`users_ID`)
+    REFERENCES `car_dealership`.`users` (`ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `car_dealership`.`users_users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `car_dealership`.`users_users` (
@@ -278,30 +298,6 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`users_users` (
   CONSTRAINT `rates`
     FOREIGN KEY (`usersID`)
     REFERENCES `car_dealership`.`users` (`ID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `car_dealership`.`users_roles`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `car_dealership`.`users_roles` (
-  `users_ID` INT NOT NULL,
-  `roles_id` INT NOT NULL,
-  PRIMARY KEY (`users_ID`, `roles_id`),
-  INDEX `fk_users_has_roles_roles1_idx` (`roles_id` ASC) VISIBLE,
-  INDEX `fk_users_has_roles_users1_idx` (`users_ID` ASC) VISIBLE,
-  CONSTRAINT `fk_users_has_roles_users1`
-    FOREIGN KEY (`users_ID`)
-    REFERENCES `car_dealership`.`users` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_has_roles_roles1`
-    FOREIGN KEY (`roles_id`)
-    REFERENCES `car_dealership`.`roles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -343,28 +339,6 @@ CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY D
 DROP TABLE IF EXISTS `car_dealership`.`carsnotavailable`;
 USE `car_dealership`;
 CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `car_dealership`.`carsnotavailable` AS select `carslisted`.`Build Year` AS `Build Year`,`carslisted`.`Kms` AS `Kms`,`carslisted`.`DKK` AS `DKK`,`carslisted`.`available` AS `available`,`carslisted`.`colour` AS `colour`,`carslisted`.`Make` AS `Make`,`carslisted`.`Model` AS `Model`,`carslisted`.`Seller` AS `Seller` from `car_dealership`.`carslisted` where (`carslisted`.`available` = 1);
-USE `car_dealership`;
-
-alter table vehicle modify value int not null;
-
-DELIMITER $$
-USE `car_dealership`$$
-
-CREATE
-DEFINER=`root`@`localhost`
-TRIGGER `car_dealership`.`makeUnavailable`
-AFTER INSERT ON `car_dealership`.`invoice`
-FOR EACH ROW
-update vehicle
-
-        set orderID = (select ID from orders where orders.ID = (select max(orders.ID) from orders)),
-
-            available = false
-
-       where vehicle.ID = (select vehicle_ID from orders where LAST_INSERT_ID(orders.ID))$$
-
-
-DELIMITER ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
