@@ -140,7 +140,6 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`vehicle` (
   `location_id` INT NOT NULL,
   `user_id` INT NULL DEFAULT NULL,
   `model_ID` INT NOT NULL,
-  `orderID` INT NULL DEFAULT NULL,
   `make_ID` INT NOT NULL,
   `car_image` VARCHAR(255) NOT NULL DEFAULT '/images/no-image-available.jpg',
   PRIMARY KEY (`ID`, `model_ID`, `make_ID`),
@@ -148,7 +147,6 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`vehicle` (
   INDEX `fk_vehicle_location1_idx` (`location_id` ASC) VISIBLE,
   INDEX `fk_vehicle_users1_idx` (`user_id` ASC) VISIBLE,
   INDEX `fk_vehicle_model1_idx` (`model_ID` ASC) VISIBLE,
-  INDEX `fk_vehicle_orders1_idx` (`orderID` ASC) VISIBLE,
   INDEX `fk_vehicle_make1_idx` (`make_ID` ASC) VISIBLE,
   CONSTRAINT `fk_vehicle_location1`
     FOREIGN KEY (`location_id`)

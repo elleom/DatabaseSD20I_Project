@@ -99,7 +99,7 @@
                         <a sec:authorize="hasAuthority('USER')" class="addCar" th:href="@{'/newVehicle'}">Add Car</a>
                     </div>
                     <div style="text-align: right;">
-                        <a sec:authorize="hasAuthority('USER')" href="#" class="view-cars">My cars</a>
+                        <a sec:authorize="hasAuthority('USER')" th:href="@{'/userVehicles/'+ ${currentUser.id}}" class="view-cars">My cars</a>
                     </div>
 
                 </div>

@@ -7,6 +7,7 @@ import com.dbproject.repositories.OrderRepository;
 import com.dbproject.repositories.PaymentTypeRepository;
 import com.dbproject.repositories.UsersRepository;
 import com.dbproject.repositories.VehiclesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,11 +27,12 @@ public class OrdersControllers {
     private final PaymentTypeRepository paymentTypeRepository;
     private final UsersRepository usersRepository;
 
-    public OrdersControllers(OrderRepository orderRepository, VehiclesRepository vehiclesRepository, PaymentTypeRepository paymentTypeRepository, UsersRepository usersRepository) {
-        this.orderRepository = orderRepository;
+    public OrdersControllers(VehiclesRepository vehiclesRepository, PaymentTypeRepository paymentTypeRepository, UsersRepository usersRepository, OrderRepository orderRepository) {
+
         this.vehiclesRepository = vehiclesRepository;
         this.paymentTypeRepository = paymentTypeRepository;
         this.usersRepository = usersRepository;
+        this.orderRepository = orderRepository;
     }
 
     @RequestMapping({"/orders", "/orders/index", "/orders/index.html"})
@@ -75,6 +77,18 @@ public class OrdersControllers {
         return "misc/Success";
 
     }
+
+    /*
+    @RequestMapping("/userVehicles/{id}")
+    public String showVehiclesByUSer(@PathVariable Long id, Model model){
+
+        //model.addAttribute("listed", vehiclesRepository.findAllByUserId(id));
+        model.addAttribute("sales", orderRepository.findBySellerId());
+        //model.addAttribute("purchases", orderRepository.findByBuyerId(id));
+
+        return "users/listByUser";
+    }
+    */
 
     public Users retrieveUser(HttpServletRequest request) {
 

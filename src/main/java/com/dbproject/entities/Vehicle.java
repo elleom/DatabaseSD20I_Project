@@ -31,8 +31,6 @@ public class Vehicle {
     @ManyToOne
     private Model model;
 
-    private Long orderID;
-
     public Vehicle() {
     }
 
@@ -124,14 +122,6 @@ public class Vehicle {
         this.model = model;
     }
 
-    public Long getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(Long orderID) {
-        this.orderID = orderID;
-    }
-
     public Make getMake() {
         return make;
     }
@@ -160,7 +150,7 @@ public class Vehicle {
                 hp == vehicle.hp &&
                 Float.compare(vehicle.value, value) == 0 &&
                 available == vehicle.available &&
-                orderID == vehicle.orderID &&
+
                 Objects.equals(colour, vehicle.colour) &&
                 Objects.equals(location, vehicle.location) &&
                 Objects.equals(user, vehicle.user) &&
@@ -169,6 +159,6 @@ public class Vehicle {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, year, colour, fuelType, kms, hp, value, available, location, user, model, orderID);
+        return Objects.hash(id, year, colour, fuelType, kms, hp, value, available, location, user, model);
     }
 }

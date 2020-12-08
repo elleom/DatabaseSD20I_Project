@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars List by User</title>
+</head>
+<body>
+
+<div>
+    <!--
+<div class="container">
+ <p>My Listed Cars</p>
+
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>model</th>
+            <th>username</th>
+        </tr>
+        <tr th:each="vehicle : ${listed}">
+            <td th:text="${vehicle.id}">DATA</td>
+            <td th:text="${vehicle.model}"> DATA</td>
+            <td th:text="${vehicle.user.userName}"> DATA</td>
+            <td th:text="${vehicle.location.name}">DATA</td>
+        </tr>
+
+       </div>
+           <div class="container">
+               <p>My Sales</p>
+               <tr>
+                   <th>ID</th>
+                   <th>name</th>
+                   <th>model</th>
+                   <th>username</th>
+               </tr>
+               <tr th:each="order : ${purchases}">
+                   <td th:text="${order.id}">DATA</td>
+                   <td th:text="${order.vehicle.id}"> DATA</td>
+                   <td th:text="${order.seller.id}"> DATA</td>
+                   <td th:text="${order.buyer.userName}">DATA</td>
+               </tr>-->
+
+           </div>
+           <div class="container">
+               <p>My Sales</p>
+               <tr>
+                   <th>ID</th>
+                   <th>name</th>
+                   <th>model</th>
+                   <th>Bought from</th>
+                   <th>username</th>
+               </tr>
+               <tr th:each="order : ${sales}">
+                   <td th:text="${order.id}">DATA</td>
+                   <td th:text="${order.vehicle.model}"> DATA</td>
+                   <td th:text="${order.vehicle.id}"> DATA</td>
+                   <td>DATA</td>
+               </tr>
+
+    </div>
+
+</div>
+
+</body>
+</html>

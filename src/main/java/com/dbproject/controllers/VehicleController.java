@@ -54,6 +54,7 @@ public class VehicleController {
 
         try {
             vehiclesRepository.deleteById(id);
+
         }
         catch (DataIntegrityViolationException e) {
             return "misc/dataIntegrityMessage";

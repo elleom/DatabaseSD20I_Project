@@ -1529,190 +1529,182 @@ usersID2</ColNames>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="418" parent="300" name="orderID">
+    <column id="418" parent="300" name="make_ID">
       <Position>12</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <column id="419" parent="300" name="make_ID">
-      <Position>13</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="420" parent="300" name="car_image">
-      <Position>14</Position>
+    <column id="419" parent="300" name="car_image">
+      <Position>13</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;/images/no-image-available.jpg&apos;</DefaultExpression>
     </column>
-    <index id="421" parent="300" name="ID_UNIQUE">
+    <index id="420" parent="300" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="422" parent="300" name="fk_vehicle_location1_idx">
+    <index id="421" parent="300" name="fk_vehicle_location1_idx">
       <ColNames>location_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="423" parent="300" name="fk_vehicle_users1_idx">
+    <index id="422" parent="300" name="fk_vehicle_users1_idx">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="424" parent="300" name="fk_vehicle_model1_idx">
+    <index id="423" parent="300" name="fk_vehicle_model1_idx">
       <ColNames>model_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="425" parent="300" name="fk_vehicle_orders1_idx">
-      <ColNames>orderID</ColNames>
-      <Type>btree</Type>
-    </index>
-    <index id="426" parent="300" name="fk_vehicle_make1_idx">
+    <index id="424" parent="300" name="fk_vehicle_make1_idx">
       <ColNames>make_ID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="427" parent="300" name="PRIMARY">
+    <key id="425" parent="300" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID
 model_ID
 make_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="428" parent="300" name="ID_UNIQUE">
+    <key id="426" parent="300" name="ID_UNIQUE">
       <ColNames>ID</ColNames>
       <UnderlyingIndexName>ID_UNIQUE</UnderlyingIndexName>
     </key>
-    <foreign-key id="429" parent="300" name="fk_vehicle_location1">
+    <foreign-key id="427" parent="300" name="fk_vehicle_location1">
       <ColNames>location_id</ColNames>
       <RefTableName>location</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="430" parent="300" name="fk_vehicle_users1">
+    <foreign-key id="428" parent="300" name="fk_vehicle_users1">
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="431" parent="300" name="fk_vehicle_model1">
+    <foreign-key id="429" parent="300" name="fk_vehicle_model1">
       <ColNames>model_ID</ColNames>
       <RefTableName>model</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="432" parent="300" name="fk_vehicle_make1">
+    <foreign-key id="430" parent="300" name="fk_vehicle_make1">
       <ColNames>make_ID</ColNames>
       <RefTableName>make</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="433" parent="301" name="Build Year">
+    <column id="431" parent="301" name="Build Year">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="434" parent="301" name="Kms">
+    <column id="432" parent="301" name="Kms">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="435" parent="301" name="DKK">
+    <column id="433" parent="301" name="DKK">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="436" parent="301" name="available">
+    <column id="434" parent="301" name="available">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="437" parent="301" name="colour">
+    <column id="435" parent="301" name="colour">
       <Position>5</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="438" parent="301" name="Make">
+    <column id="436" parent="301" name="Make">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="439" parent="301" name="Model">
+    <column id="437" parent="301" name="Model">
       <Position>7</Position>
       <DataType>varchar(125)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="440" parent="301" name="Seller">
+    <column id="438" parent="301" name="Seller">
       <Position>8</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="441" parent="302" name="Build Year">
+    <column id="439" parent="302" name="Build Year">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="442" parent="302" name="Kms">
+    <column id="440" parent="302" name="Kms">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="443" parent="302" name="DKK">
+    <column id="441" parent="302" name="DKK">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="444" parent="302" name="available">
+    <column id="442" parent="302" name="available">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="445" parent="302" name="colour">
+    <column id="443" parent="302" name="colour">
       <Position>5</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="446" parent="302" name="Make">
+    <column id="444" parent="302" name="Make">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="447" parent="302" name="Model">
+    <column id="445" parent="302" name="Model">
       <Position>7</Position>
       <DataType>varchar(125)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="448" parent="302" name="Seller">
+    <column id="446" parent="302" name="Seller">
       <Position>8</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="449" parent="303" name="Build Year">
+    <column id="447" parent="303" name="Build Year">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="450" parent="303" name="Kms">
+    <column id="448" parent="303" name="Kms">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="451" parent="303" name="DKK">
+    <column id="449" parent="303" name="DKK">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="452" parent="303" name="available">
+    <column id="450" parent="303" name="available">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
     </column>
-    <column id="453" parent="303" name="colour">
+    <column id="451" parent="303" name="colour">
       <Position>5</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="454" parent="303" name="Make">
+    <column id="452" parent="303" name="Make">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="455" parent="303" name="Model">
+    <column id="453" parent="303" name="Model">
       <Position>7</Position>
       <DataType>varchar(125)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="456" parent="303" name="Seller">
+    <column id="454" parent="303" name="Seller">
       <Position>8</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>

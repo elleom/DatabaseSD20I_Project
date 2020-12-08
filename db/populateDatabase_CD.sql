@@ -1536,11 +1536,11 @@ values (1, 2011, 'White', 'F', 20000, 76, 25000,1, 4, 3,8, 123), --
 
 select * from vehicle;
 
-insert into orders(ID, date, value, buyer_id, seller_id, vehicle_ID)
-values (2,current_date, (select value from vehicle where vehicle.ID = 2),2,1,2); -- change date
+insert into orders(ID, date, value, buyer_id, seller_id, vehicle_ID,payment_type_ID)
+values (2,current_date, (select value from vehicle where vehicle.ID = 2),2,1,1,1); -- change date
 
-insert into invoice(date, amount, order_id, user_id, payment_type_ID)
-values (current_date, 10000, 2, 2, 1);
+insert into invoice(date, amount, order_id, user_id)
+values (current_date, 10000, 2, 2);
 
 select value from vehicle where vehicle.ID = 2;
 
