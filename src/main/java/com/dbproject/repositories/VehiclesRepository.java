@@ -14,8 +14,4 @@ import java.util.Set;
 public interface VehiclesRepository extends CrudRepository<Vehicle, Long> {
 
 
-    @Query("select v from Vehicle v where v.user.id = :id")
-    Iterable<Vehicle> findAllByUserId(@Param("id") Long id);
-
-
 }

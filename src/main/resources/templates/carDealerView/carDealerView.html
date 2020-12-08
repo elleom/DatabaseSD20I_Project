@@ -98,9 +98,11 @@
                     <div>
                         <a sec:authorize="hasAuthority('USER')" class="addCar" th:href="@{'/newVehicle'}">Add Car</a>
                     </div>
+                    <!-- TODO RESUME IF TIME
                     <div style="text-align: right;">
                         <a sec:authorize="hasAuthority('USER')" th:href="@{'/userVehicles/'+ ${currentUser.id}}" class="view-cars">My cars</a>
                     </div>
+                    -->
 
                 </div>
             </div>
