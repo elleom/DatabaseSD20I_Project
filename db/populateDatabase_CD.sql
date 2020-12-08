@@ -1588,3 +1588,7 @@ INSERT INTO `users_roles` (`users_id`, `roles_id`) VALUES (30, 1);
 
 
 select * from roles join users_roles ur on roles.id = ur.roles_id join users u on u.ID = ur.users_ID;
+
+use car_dealership;
+
+call makeUnavailable(2)

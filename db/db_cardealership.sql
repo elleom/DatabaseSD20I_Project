@@ -312,6 +312,33 @@ CREATE TABLE IF NOT EXISTS `car_dealership`.`carsavailable` (`Build Year` INT, `
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `car_dealership`.`carslisted` (`Build Year` INT, `Kms` INT, `DKK` INT, `available` INT, `colour` INT, `Make` INT, `Model` INT, `Seller` INT);
 
+-- after selling a car makes gets the car unavailable for other users;
+
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `car_dealership`.`makeUnavailable` $$
+CREATE PROCEDURE `car_dealership`.`makeUnavailable` (
+IN in_id INTEGER)
+BEGIN
+    UPDATE vehicle
+   set available = false
+       where vehicle.ID = in_id;
+END $$
+
+DELIMITER ;
+
+
+create
+TRIGGER `car_dealership`.`makeUnavailable`
+AFTER INSERT ON `car_dealership`.`orders`
+FOR EACH ROW
+       update vehicle
+        set available = false
+       where vehicle.ID = (select vehicle_ID from orders where LAST_INSERT_ID(orders.ID));
+
+drop trigger `car_dealership`.`makeUnavailable`; /* DROP THE TRIGGER CAUSE IT creates a funny outcome" */
+
 -- -----------------------------------------------------
 -- Placeholder table for view `car_dealership`.`carsnotavailable`
 -- -----------------------------------------------------

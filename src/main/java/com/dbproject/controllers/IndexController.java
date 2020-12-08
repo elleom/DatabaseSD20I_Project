@@ -36,7 +36,7 @@ public class IndexController {
         currentUser = usersRepository.findByUserName(currentUserName);
         model.addAttribute("currentUser", currentUser);
 
-        model.addAttribute("vehicles" , vehiclesRepository.findAll());
+        model.addAttribute("vehicles" , vehiclesRepository.findAllAvailable());
         return "carDealerView/carDealerView";
     }
 

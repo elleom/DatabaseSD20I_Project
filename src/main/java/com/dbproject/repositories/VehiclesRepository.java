@@ -4,6 +4,7 @@ import com.dbproject.entities.Order;
 import com.dbproject.entities.Users;
 import com.dbproject.entities.Vehicle;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -12,6 +13,13 @@ import java.util.List;
 import java.util.Set;
 
 public interface VehiclesRepository extends CrudRepository<Vehicle, Long> {
+
+    @Query(value = "SELECT * from vehicle where Vehicle .available = 1", nativeQuery = true)
+    Iterable<Vehicle> findAllAvailable();
+
+    @Procedure(procedureName = "makeUnavailable")
+    void makeUnavailable(Long vehicleID);
+
 
 
 }

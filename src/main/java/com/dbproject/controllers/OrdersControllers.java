@@ -72,7 +72,7 @@ public class OrdersControllers {
         order.setValue(vehicle.getValue());
 
         orderRepository.save(order);
-
+        vehiclesRepository.makeUnavailable(id); //get the car out of the list
 
         return "misc/Success";
 
