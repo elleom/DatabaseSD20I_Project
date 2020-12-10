@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.security.Principal;
+
 
 @Controller
 public class VehicleController {
@@ -62,28 +64,25 @@ public class VehicleController {
         return "vehicles/delCar";
     }
 
+    @Transactional
     @PostMapping("/saveVehicle")
     public String saveVehicle(@ModelAttribute("newVehicle") Vehicle vehicle, HttpServletRequest request){ //Model attribute bids the form data to the object
+
         //save vehicle to db
-        Users user = retriveUser(request);
+        Users user = retrieveUser(request);
         vehicle.setUser(user);
-        //vehicle.setAvailable(1);
         vehiclesRepository.save(vehicle);
 
         return "misc/Success";
-
     }
 
-    public Users retriveUser(HttpServletRequest request) {
+    public Users retrieveUser(HttpServletRequest request) {
 
         String currentUserName;
         Users currentUser;
         Principal principal = request.getUserPrincipal();
         currentUserName = principal.getName();
         currentUser = usersRepository.findByUserName(currentUserName);
-
         return currentUser;
-
     }
-
 }

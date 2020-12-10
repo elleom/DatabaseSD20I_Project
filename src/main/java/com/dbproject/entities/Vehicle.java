@@ -15,7 +15,7 @@ public class Vehicle {
     private Long kms;
     private Long hp;
     private Long value;
-    private String car_image;
+    private String car_image = "/images/no-image-available.jpg";
 
     private Integer available = 1;
 

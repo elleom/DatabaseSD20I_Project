@@ -1,5 +1,6 @@
 package com.dbproject.controllers;
 
+import com.dbproject.customException.CarNotAvailableException;
 import com.dbproject.entities.Order;
 import com.dbproject.entities.Users;
 import com.dbproject.entities.Vehicle;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.Calendar;
 
@@ -36,13 +38,13 @@ public class OrdersControllers {
     }
 
     @RequestMapping({"/orders", "/orders/index", "/orders/index.html"})
-    public String ordersList(Model model){
+    public String ordersList(Model model) {
         model.addAttribute("orders", orderRepository.findAll());
         return "orders/list";
     }
 
     @RequestMapping("/orders/show/{id}")
-    public String orderbyId(@PathVariable Long id, Model model){
+    public String orderbyId(@PathVariable Long id, Model model) {
         model.addAttribute("order", orderRepository.findById(id).orElse(null));
 
         return "orders/singleOrder";
@@ -60,8 +62,9 @@ public class OrdersControllers {
         return "orders/newOrder";
     }
 
+    @Transactional(rollbackOn = CarNotAvailableException.class)
     @PostMapping("/saveOrder/{id}")
-    public String newOrder(@PathVariable Long id,@ModelAttribute("newOrder") Order order, HttpServletRequest request){
+    public String newOrder(@PathVariable Long id, @ModelAttribute("newOrder") Order order, HttpServletRequest request) throws CarNotAvailableException {
 
         Vehicle vehicle = vehiclesRepository.findById(id).get();
         Users user = retrieveUser(request);
@@ -71,24 +74,23 @@ public class OrdersControllers {
         order.setSeller(vehicle.getUser());
         order.setValue(vehicle.getValue());
 
+        /** prevent a car already sold to be re order
+         * LOGIC: reproduces the query to the DB, if car already declared notAvail
+         * then rolls back
+         */
+        Vehicle temp = vehiclesRepository.findById(vehicle.getId()).get();
+
         orderRepository.save(order);
+        //CALLS TO STORED PROCEDURE
         vehiclesRepository.makeUnavailable(id); //get the car out of the list
+
+        if (temp.getAvailable() != 0) {
+            throw new CarNotAvailableException("Car no longer available");
+        }
 
         return "misc/Success";
 
     }
-
-    /*
-    @RequestMapping("/userVehicles/{id}")
-    public String showVehiclesByUSer(@PathVariable Long id, Model model){
-
-        //model.addAttribute("listed", vehiclesRepository.findAllByUserId(id));
-        model.addAttribute("sales", orderRepository.findBySellerId());
-        //model.addAttribute("purchases", orderRepository.findByBuyerId(id));
-
-        return "users/listByUser";
-    }
-    */
 
     public Users retrieveUser(HttpServletRequest request) {
 
