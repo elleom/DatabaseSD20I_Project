@@ -38,7 +38,14 @@ public class VehicleController {
     public String getVehicleList(Model model){
 
         model.addAttribute("vehicles", vehiclesRepository.findAll());
-        return "vehicles/newVehicle";
+        return "vehicles/list";
+    }
+
+    @RequestMapping({"/vehiclesOrdered","/vehiclesOrdered/index.html","/vehiclesOrdered/index"})
+    public String getVehicleOrderedList(Model model){
+
+        model.addAttribute("vehicles", vehiclesRepository.findAllNotAvailable());
+        return "vehicles/listOrdered";
     }
 
     @RequestMapping({"/newVehicle","/newVehicle/index.html","/newVehicle/index"})
@@ -64,6 +71,8 @@ public class VehicleController {
         return "vehicles/delCar";
     }
 
+
+
     @Transactional
     @PostMapping("/saveVehicle")
     public String saveVehicle(@ModelAttribute("newVehicle") Vehicle vehicle, HttpServletRequest request){ //Model attribute bids the form data to the object
@@ -75,6 +84,8 @@ public class VehicleController {
 
         return "misc/Success";
     }
+
+
 
     public Users retrieveUser(HttpServletRequest request) {
 
