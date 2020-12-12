@@ -17,12 +17,14 @@
         <div class="frontPageHeader"></div>
         <li>
             <div class="searchBtnWrapper menuBtn">
+                <form id="searchForm" action="/vehicles/search/" method="post">
                 <label>
-                    <input class="searchInput" id="searchInput" type="text" placeholder="Search">
+                    <input class="searchInput" id="searchInput" type="text" name="param" placeholder="Search">
                 </label>
                 <div>
                     <button type="button" id="searchCar" class="searchBtn">Search</button>
                 </div>
+                </form>
             </div>
         </li>
         <li style="float:right">

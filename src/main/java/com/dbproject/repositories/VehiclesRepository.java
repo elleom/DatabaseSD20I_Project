@@ -4,6 +4,7 @@ import com.dbproject.entities.Vehicle;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 public interface VehiclesRepository extends CrudRepository<Vehicle, Long> {
 
@@ -15,5 +16,9 @@ public interface VehiclesRepository extends CrudRepository<Vehicle, Long> {
 
     @Procedure(procedureName = "makeUnavailable")
     void makeUnavailable(Long vehicleID);
+
+
+    @Query("SELECT v from Vehicle v where (v.model.name like %:param%) or (v.model.make.name like %:param%)")
+    Iterable<Vehicle> searchFind(@Param("param") String param);
 
 }

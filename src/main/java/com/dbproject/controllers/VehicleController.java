@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.net.http.HttpRequest;
 import java.security.Principal;
 
 
@@ -25,6 +26,8 @@ public class VehicleController {
     private final LocationRepository locationRepository;
     private final ModelRepository modelRepository;
     private final MakeRepository makeRepository;
+    private String currentUserName;
+    private Users currentUser;
 
     public VehicleController(UsersRepository usersRepository, VehiclesRepository vehiclesRepository, LocationRepository locationRepository, ModelRepository modelRepository, MakeRepository makeRepository) {
         this.usersRepository = usersRepository;
@@ -57,6 +60,15 @@ public class VehicleController {
         model.addAttribute("makes", makeRepository.findAll());
         return "/vehicles/newVehicle";
     }
+
+    @RequestMapping({"/vehicles/search/{params}"})
+    public String getVehicleListFiltered(@PathVariable ("params") String params, Model model){
+
+        model.addAttribute("vehicles", vehiclesRepository.searchFind(params));
+        return "carDealerView/searchFiltered";
+    }
+
+
 
     @RequestMapping("/vehicle/delete/{id}")
     public String delVehicle(@PathVariable Long id){

@@ -1598,4 +1598,6 @@ values ('audit3','audit3','audit3@email.com', 5);
 
 delete from users where users.id = 39;
 
+select mm.name from model mm;
+
 
