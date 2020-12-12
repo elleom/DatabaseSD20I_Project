@@ -1592,3 +1592,10 @@ select * from roles join users_roles ur on roles.id = ur.roles_id join users u o
 use car_dealership;
 
 call makeUnavailable(2)
+
+insert into users(user_name, password, email, location_ID)
+values ('audit3','audit3','audit3@email.com', 5);
+
+delete from users where users.id = 39;
+
+

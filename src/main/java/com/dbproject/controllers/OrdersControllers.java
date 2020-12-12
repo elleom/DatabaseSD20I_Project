@@ -1,14 +1,11 @@
 package com.dbproject.controllers;
 
 import com.dbproject.customException.CarNotAvailableException;
+import com.dbproject.entities.Invoice;
 import com.dbproject.entities.Order;
 import com.dbproject.entities.Users;
 import com.dbproject.entities.Vehicle;
-import com.dbproject.repositories.OrderRepository;
-import com.dbproject.repositories.PaymentTypeRepository;
-import com.dbproject.repositories.UsersRepository;
-import com.dbproject.repositories.VehiclesRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.dbproject.repositories.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,13 +25,15 @@ public class OrdersControllers {
     private final VehiclesRepository vehiclesRepository;
     private final PaymentTypeRepository paymentTypeRepository;
     private final UsersRepository usersRepository;
+    private final InvoiceRepository invoiceRepository;
 
-    public OrdersControllers(VehiclesRepository vehiclesRepository, PaymentTypeRepository paymentTypeRepository, UsersRepository usersRepository, OrderRepository orderRepository) {
+    public OrdersControllers(VehiclesRepository vehiclesRepository, PaymentTypeRepository paymentTypeRepository, UsersRepository usersRepository, OrderRepository orderRepository, InvoiceRepository invoiceRepository) {
 
         this.vehiclesRepository = vehiclesRepository;
         this.paymentTypeRepository = paymentTypeRepository;
         this.usersRepository = usersRepository;
         this.orderRepository = orderRepository;
+        this.invoiceRepository = invoiceRepository;
     }
 
     @RequestMapping({"/orders", "/orders/index", "/orders/index.html"})
@@ -84,9 +83,19 @@ public class OrdersControllers {
         //CALLS TO STORED PROCEDURE
         vehiclesRepository.makeUnavailable(id); //get the car out of the list
 
+        //creates invoice based on order
+        Invoice invoice = new Invoice();
+        invoice.setDate(Calendar.getInstance().getTime());
+        invoice.setOrder(order);
+        invoice.setUser(order.getBuyer());
+        invoiceRepository.save(invoice);
+
+
         if (temp.getAvailable() != 0) {
             throw new CarNotAvailableException("Car no longer available");
         }
+
+
 
         return "misc/Success";
 

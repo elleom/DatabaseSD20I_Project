@@ -368,3 +368,47 @@ CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY D
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+alter table audit
+	add detail varchar(255) not null;
+
+create
+    definer = root@localhost procedure makeUnavailable(IN in_id int)
+BEGIN
+    UPDATE vehicle
+   set available = false
+       where vehicle.ID = in_id;
+END;
+
+create
+    definer = root@localhost procedure makeAvailable(IN in_id int)
+BEGIN
+    UPDATE vehicle
+   set available = true
+       where vehicle.ID = in_id;
+END;
+
+create user 'www-data' identified by 'NoRootPassword1!';
+
+create user 'admin' identified by 'AdminPassword1!';
+
+GRANT select, update, insert, delete on car_dealership.*  to `www-data`;
+revoke ALL privileges on TABLE  car_dealership.audit from `www-data`;
+
+
+GRANT ALL PRIVILEGES on car_dealership.*  to 'admin';
+revoke ALL on TABLE car_dealership.audit from 'admin';
+
+ create
+        TRIGGER `car_dealership`.`newUser`
+        AFTER INSERT ON `car_dealership`.`users`
+        FOR EACH ROW
+            insert into audit(type, date, user, detail)
+            values ('registration', now(), session_user() , NEW.user_name)
+
+create
+        TRIGGER `car_dealership`.`delUser`
+        AFTER DELETE ON `car_dealership`.`users`
+        FOR EACH ROW
+            insert into audit(type, date, user, detail)
+            values ('delete', now(), session_user() , OLD.user_name)

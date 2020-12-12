@@ -16,6 +16,10 @@ public class Audit {
     private String date;
     private String user;
 
+
+
+    private String detail;
+
     public Audit() {
     }
 
@@ -58,19 +62,35 @@ public class Audit {
         this.user = user;
     }
 
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Audit audit = (Audit) o;
-        return Objects.equals(id, audit.id) &&
-                Objects.equals(type, audit.type) &&
-                Objects.equals(date, audit.date) &&
-                Objects.equals(user, audit.user);
+
+        if (id != null ? !id.equals(audit.id) : audit.id != null) return false;
+        if (type != null ? !type.equals(audit.type) : audit.type != null) return false;
+        if (date != null ? !date.equals(audit.date) : audit.date != null) return false;
+        if (user != null ? !user.equals(audit.user) : audit.user != null) return false;
+        return detail != null ? detail.equals(audit.detail) : audit.detail == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, date, user);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (detail != null ? detail.hashCode() : 0);
+        return result;
     }
 }
