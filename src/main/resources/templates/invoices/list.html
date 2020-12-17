@@ -13,14 +13,12 @@
         <th>Date</th>
         <th>Amount</th>
         <th>Invoiced to</th>
-        <th>Payment type</th>
     </tr>
     <tr th:each="invoice : ${invoices}">
         <td th:text="${invoice.ID}">DATA</td>
         <td th:text="${invoice.date}"> DATA</td>
         <td th:text="${invoice.amount}"> DATA</td>
         <td th:text="${invoice.user.userName}">DATA</td>
-        <td th:text="${invoice.paymentType.type}">DATA</td>
     </tr>
 </table>
 </body>
