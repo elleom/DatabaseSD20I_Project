@@ -17,14 +17,12 @@
         <div class="frontPageHeader"></div>
         <li>
             <div class="searchBtnWrapper menuBtn">
-                <form id="searchForm" action="/vehicles/search/" method="post">
                 <label>
-                    <input class="searchInput" id="searchInput" type="text" name="param" placeholder="Search">
+                    <input class="searchInput" id="searchInput" type="text" placeholder="Search">
                 </label>
                 <div>
                     <button type="button" id="searchCar" class="searchBtn">Search</button>
                 </div>
-                </form>
             </div>
         </li>
         <li style="float:right">
@@ -119,7 +117,7 @@
 
                 <div style="position: relative; overflow: hidden;">
                     <img style="z-index: 1;" class="img-thumbnail listing-thumbs-lg"
-                         th:src="@{/images/no-image-available.jpg}" alt="Media result"/>
+                         th:src="*{vehicle.car_image}" alt="Media result"/>
 
                 </div>
 

@@ -1600,4 +1600,5 @@ delete from users where users.id = 39;
 
 select mm.name from model mm;
 
-
+insert into users(user_name, rating, password, email, location_ID)
+value ('testrole', null, 'password', 'role@email', 1);

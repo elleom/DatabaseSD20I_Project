@@ -412,3 +412,16 @@ create
         FOR EACH ROW
             insert into audit(type, date, user, detail)
             values ('delete', now(), session_user() , OLD.user_name)
+
+
+USE `car_dealership`;
+
+drop trigger if exists assignUserRole;
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `car_dealership`.`assignUserRole`
+AFTER INSERT ON `car_dealership`.`users`
+FOR EACH ROW
+insert into users_roles(users_ID, roles_id)
+        values (NEW.ID, 1);
+
